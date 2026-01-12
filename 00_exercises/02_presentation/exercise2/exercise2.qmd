@@ -1,0 +1,145 @@
+---
+title: "Mapping castles in France"
+subtitle: "Using R"
+author: 
+  name: "Lidiya Mishieva [![ORCID](https://orcid.org/sites/default/files/images/orcid_16x16.png)](https://orcid.org/0009-0006-5642-1316)"
+  affiliation: Department of Methodology and Statistics, Utrecht University
+date: today
+format: 
+  revealjs:
+    smaller: true
+    scrollable: true
+    chalkboard: true
+    logo: ubd-afsluiting-logo-pay-off.png
+    css: logo.css
+    footer: "Some footer"
+    editor: visual
+nocite: |
+  @gilardi2021, @beech2005c, @marshall2016 
+bibliography: references.bib
+---
+
+## Intro
+
+-   Open Street Maps (OSM) can be a great data source
+-   In this presentation, we will see how to extract and use this data to map castles in France using R
+-   For extracting, we will use the package 'osmextract'
+-   The function 'oe_get()' downloads a mirror of the OSM data base as specified by the user
+-   Then, queries are performed locally using SQL
+-   We use 'tidyverse' and 'sf' for operational procedures such as (spatial) data wrangling etc
+
+## Downloading the data
+
+```{r}
+#| echo: true
+#| eval: false
+#| label: extract
+
+# load packages
+library(tidyverse)
+library(sf)
+library(osmextract)
+
+# wait 1000 seconds for the internet operation to complete
+options(timeout = 1000)
+
+# retrieve a data extract from a provider
+castles <- oe_get(
+  # define a geographical area to be matched with a .osm.pbf file
+  place = "France",
+  # define a provider
+  provider = "geofabrik",
+  # query the database locally (!) from a downloaded odm extract
+  # only layer is filtered before downloading the extract
+  query = "
+    SELECT * FROM multipolygons
+    WHERE historic = 'castle'
+  ",
+  # specify additional columns corresponding to OSM tags
+  extra_tags = c("castle_type"),
+  # define directory for the osm extract 
+  download_directory = getwd(),
+  # no messages
+  quiet = TRUE
+)
+```
+
+## Let's take a look at the data
+
+```{r}
+#| cache: true
+#| label: export_import
+
+# write_rds(castles, "castles_france.Rds")
+castles <- read_rds("castles_france.Rds")
+library(DT)
+datatable(castles)
+```
+
+## Mapping the castles
+
+Neither disjoint nor exhaustive selection of castle types in France ...
+
+```{r}
+#| cache: true
+#| label: mapping
+
+# use only the biggest categories of castles for the map
+castle_cats <- c(
+  "citadel","fortress","defensive", "castle", 
+  "manor", "palace", "chateau", "stately")
+
+castles <- castles %>%
+  # remove all NA's for now
+  filter(!is.na(castle_type)) %>%
+  # define the "other" category
+  # and the levels (sorted by defense grade)
+  mutate(
+    castle_type2 = if_else(castle_type %in% castle_cats, castle_type, "other"),
+    castle_type2 = factor(castle_type2, levels = c(castle_cats, "other"))
+  ) %>%
+  # clean up the geometries
+  st_make_valid() %>%
+  # only use centroids of the polygons
+  st_centroid()
+
+# plot the castles
+ggplot(castles) +
+  geom_sf(aes(color = castle_type2), size = 1) +
+  scale_color_brewer(palette = "Spectral") +
+  theme_minimal()
+
+```
+
+## Is the North really less defensive? Didn’t seem to bother the Normans. {background-image="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExc285aTlsbXhpNjBxdzYyaXptaGpnaHhjajA2eWI4Y2J6Nms3b2doMCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/nhJcffTIgGn4Y/giphy.gif" background-size="contain"}
+
+## Placeholder
+
+::::: columns
+::: {.column width="50%"}
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+:::
+
+::: {.column width="50%"}
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+:::
+:::::
+
+## No castle stands alone
+
+We could think of defensiveness as determined by both regional and local influences. While regional factors ($X\beta$) capture site-specific conditions, the spatial lag term ($\rho WY$) reflects local interdependence, maybe because neighboring rulers responded to each other’s fortifications.
+
+If the reduced form of the formula of the spatially-lagged Y model is written out and transformed, it becomes clear that due to the correlation of the error terms with $Y$, the spatial lag must be treated as an endogenous (and not as an independent) variable (see @anselin1988):
+
+\begin{equation}
+\begin{split}
+Y & = \rho WY + X\beta + \epsilon \\
+Y-\rho WY & = X\beta + \epsilon \\
+(I-\rho W)Y & = X\beta + \epsilon \\
+Y & = (I − \rho W)^{−1}X\beta + (I − \rho W)^{−1}\epsilon.
+\end{split}
+\end{equation}
+
+<!-- where $I$ in (3) represents the identity matrix of $W$. Subtracting $W$ from $I$ sets the diagonal of the weight matrix to zero, so that the influence on itself is not considered in the estimation of $\rho$. -->
+
+## References and bibliography

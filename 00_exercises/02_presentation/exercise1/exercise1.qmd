@@ -1,0 +1,34 @@
+---
+title: "Exercise 1"
+author: 
+  name: "Lidiya Mishieva [![ORCID](https://orcid.org/sites/default/files/images/orcid_16x16.png)](https://orcid.org/0009-0006-5642-1316)"
+  affiliation: Department of Methodology and Statistics, Utrecht University
+date: today
+format: revealjs
+editor: visual
+---
+
+## My favorite equation
+
+### Spatial Lag Model
+
+::: fragment
+$$
+y = \rho W y + X \beta + \varepsilon,
+$$
+:::
+
+::: fragment
+where $y$ is the vector of observations, $W$ is the spatial weights matrix, $\rho$ is the spatial autoregressive parameter, $X$ is the matrix of explanatory variables, $\beta$ is the coefficient vector, and $\varepsilon$ is the error term.
+:::
+
+## Something personal about me
+
+::: incremental
+-   I am into bread baking.
+-   Here's some output of my work:
+:::
+
+::: fragment
+![](bread.jpg){fig-align="center" width="50%"}
+:::
