@@ -1,0 +1,14 @@
+---
+title: "Reproducible manuscript"
+subtitle: "Of an example simulation study by "
+author: "Lidiya Mishieva"
+format: pdf
+editor: visual
+bibliography: references.bib
+---
+
+## Introduction
+
+This document contains a reproducible simulation script of a simulation study by @boulesteix_introduction_2020.
+
+## Simulation script
