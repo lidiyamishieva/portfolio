@@ -58,4 +58,18 @@ theme_minimal()
 
 Example of an inline code: $25$ plus $25$ equals `r 25+25`. Also the data contains `r sum(penguins$Species=="Adelie Penguin (Pygoscelis adeliae)")` Adelie penguins,  `r sum(penguins$Species=="Gentoo penguin (Pygoscelis papua)")` Gentoo penguins, and `r sum(penguins$Species=="Chinstrap penguin (Pygoscelis antarctica)")` Chinstrap penguins.
 
+## Example of sourcing the code 
+
+```{r}
+#| label: Include the do_addition.R function in the current file
+#| file: "addition_fun.R"
+```
+
+```{r}
+#| label: perform an addition to check whether the sourcing worked
+a <- 4
+b <- 3
+do_addition(a, b)
+```
+
 ## References
