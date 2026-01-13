@@ -128,8 +128,6 @@ for (k in 1:n.sim){
   }}
 ```
 
-## Results
-
 ```{r}
 #| label: create-figure
 #| echo: false
@@ -160,3 +158,4 @@ FIGURE
 # save figure
 # savePlot("Figure_STRATOS.tif", type="tif")
 ```
+
