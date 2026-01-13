@@ -126,6 +126,7 @@ for (k in 1:n.sim){
     dc$bmi.me <- dc$bmi + rnorm(dim(dc)[1], 0, sqrt(var.me.conf) )
     beta.hat[k,i] <- lm(bp ~ HbA1C.me + age + bmi.me + as.factor(sex), data=dc)$coef[2]
   }}
+
 ```
 
 ## Results
@@ -159,4 +160,7 @@ FIGURE
 
 # save figure
 # savePlot("Figure_STRATOS.tif", type="tif")
+
+# ensuring that export works from the .qmd file
+ggsave("figures/Figure_STRATOS.tif", plot = FIGURE)
 ```
