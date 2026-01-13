@@ -9,9 +9,27 @@ bibliography: references.bib
 
 ## Introduction
 
-This document contains a reproducible simulation script of a simulation study by @boulesteix_introduction_2020. The simulation study aims to investigate the impact of measurement error on (continuous) exposure and/or (continuous) confounding variable.
+This document contains results of a simulation study by @boulesteix_introduction_2020, produced using a reproducible simulation script. The simulation study aims to investigate the impact of measurement error on (continuous) exposure and/or (continuous) confounding variable.
 
-## Simulation script
+## Manuscript
+
+```{r}
+#| label: random-number-generator
+#| include: false
+
+# set the random number generator version
+RNGkind(kind = "Mersenne-Twister",
+        normal.kind = "Inversion",
+        sample.kind = "Rejection") 
+```
+
+```{r}
+#| label: session-info
+#| include: false
+#| 
+sessionInfo()
+# writeLines(capture.output(sessionInfo()), "session-info.txt")
+```
 
 ```{r}
 #| label: load-libraries
@@ -128,8 +146,6 @@ for (k in 1:n.sim){
   }}
 
 ```
-
-## Results
 
 ```{r}
 #| label: create-figure
