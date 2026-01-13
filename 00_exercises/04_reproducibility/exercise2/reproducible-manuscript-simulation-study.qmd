@@ -9,7 +9,7 @@ bibliography: references.bib
 
 ## Introduction
 
-This document contains results of a simulation study by @boulesteix_introduction_2020, produced using a reproducible simulation script. The simulation study aims to investigate the impact of measurement error on (continuous) exposure and/or (continuous) confounding variable.
+This document contains results of a simulation study by @boulesteix_introduction_2020, produced using a reproducible simulation script. Part of the manuscript is also added to the output. The simulation study aims to investigate the impact of measurement error on (continuous) exposure and/or (continuous) confounding variable.
 
 ## Manuscript
 
@@ -117,6 +117,10 @@ summary(lm(bp ~ HbA1C + age + as.factor(sex), data=dc))
 confint(lm(bp ~ HbA1C + age + as.factor(sex), data=dc))
 summary(lm(bp ~ HbA1C + bmi + age + as.factor(sex), data=dc))
 confint(lm(bp ~ HbA1C + bmi + age + as.factor(sex), data=dc))
+
+# save models:
+unadjusted_model <- lm(bp ~ HbA1C + age + as.factor(sex), data=dc)
+adjusted_model <- lm(bp ~ HbA1C + bmi + age + as.factor(sex), data=dc)
 ```
 
 ```{r}
@@ -147,9 +151,22 @@ for (k in 1:n.sim){
 
 ```
 
+### An example of a statistical simulation
+
+For illustration, in this section we consider a simple simulation study that investigates the impact of measurement error in linear regression analysis, inspired by a previous study [@brakenhoff_random_2018] . See the overview of its key features in the right column of Table 2. Our study is completely reproducible using the R code provided in [online supplemental file 1](https://bmjopen.bmj.com/content/10/12/e039921#DC1), which uses freely available data. In epidemiological studies of the relation between an exposure and an outcome, this relation is often estimated using regression analysis. As an example, we consider a study of the association between glycated haemoglobin (HbA1c) levels and systolic blood pressure assessed using linear regression. Data from 5092 subjects in the 2015–2016 National Health and Nutrition Examination Survey (NHANES) [@zipf2013health] are used to obtain an estimate of the effect of HbA1c on systolic blood pressure, while adjusting for age, gender and body mass index (BMI). Details on the data are described on the NHANES website (<https://wwwn.cdc.gov/nchs/nhanes/>). After adjustment for age and gender, it was estimated that HbA1c increases systolic blood pressure by `r round(unadjusted_model$coefficients[["HbA1C"]], 2)`  mmHg (95% CI `r round(confint(unadjusted_model)[2, 1], 2)` to `r round(confint(unadjusted_model)[2, 2], 2)`) per unit increase in HbA1c. Additional adjustment for BMI resulted in a considerable change in the effect estimate: HbA1c was estimated to increase blood pressure by `r round(adjusted_model$coefficients[["HbA1C"]], 2)`  mmHg (95% CI `r round(confint(adjusted_model)[2, 1], 2)` to `r round(confint(adjusted_model)[2, 2], 2)`) per unit increase in HbA1c.
+
+The confounding variable BMI as well as the exposure variable HbA1c may be subject to measurement error. For example, BMI may be self-reported (instead of a standardised measurement using scales) or technical problems in the lab may have affected the HbA1c measurement. Therefore, researchers may want to know the possible impact of measurement error of the exposure and/or confounding variable(s) in terms of bias [@brakenhoff_measurement_2018]. We are interested both in the direction and magnitude of this bias.
+
+One way to investigate the possible impact of measurement error is through a small simulation study [@brakenhoff_random_2018], whose steps are schematically represented in Figure 1. For the purpose of this example, the original recordings in the NHANES data were assumed to be measured without error (step 1 in Figure 1). Then, in addition, new artificial variables were created that represented HbA1c and BMI, but for the situation in which these are measured with error. To create these variables, measurement error was artificially added to the exposure variable (HbA1c) and/or the confounding variable (BMI) (step 2 in Figure 1). These errors were drawn from a normal distribution with a mean zero and were independent of all variables considered. This type of measurement error is often referred to as classical measurement error [@carroll_measurement_2006]. The variance of the normal distribution, defining the amount of measurement error added, was altered for different scenarios. Scenarios ranged from no measurement error on either HbA1c or BMI (reference scenario) to 50% of the variance in HbA1c and/or BMI attributable to measurement error. To minimise the impact of simulation error, each scenario was repeated 1000 times and the results were averaged per scenario over these 1000 repetitions.
+
+[![Schematic illustration of the key steps of the example simulation study.](figures/bmjopen-2020-December-10-12--F1.large.jpg){width="440"}](https://bmjopen.bmj.com/content/bmjopen/10/12/e039921/F1.large.jpg?width=800&height=600&carousel=1)
+
+Figure 2 shows the impact of measurement error on HbA1c and/or BMI on the estimate of the regression coefficient of HbA1c (steps 3 and 4 in Figure 1). The relation between HbA1c and systolic blood pressure was attenuated when measurement error was added to HbA1c, but not when measurement error was added to BMI. The association became stronger as measurement error was added solely to the confounding variable BMI. The reason for this effect is that, with increasing levels of measurement error on BMI, adjustment for the confounding due to BMI becomes less efficient and the effect estimate gets closer to the unadjusted estimate (`r round(unadjusted_model$coefficients[["HbA1C"]], 2)` mmHg). Due to measurement error, a type of residual confounding is introduced. In the case of measurement error on HbA1c as well as BMI, both phenomena play a role and may cancel each other out. In this study, measurement error on HbA1c seemed more influential than measurement error on BMI.
+
 ```{r}
 #| label: create-figure
 #| echo: false
+#| fig-cap: "Estimates of the association between HbA1c levels and systolic blood pressure after adjustment for confounding by BMI under various simulation scenarios characterised by different levels of measurement error. Numbers represent effect estimates averaged over 1000 simulation repetitions. Red shading represents low (averaged) estimates. Blue shading represents high (averaged) estimates. CIs are omitted for clarity. See text for details. BMI, body mass index; HbA1c, glycated haemoglobin."
 
 # create figure
 tot.mat <- cbind(100*scenarios,apply(beta.hat,2,mean))
@@ -166,13 +183,18 @@ FIGURE <- ggplot(tot.mat, aes(me.exp, me.conf)) +
   theme(panel.background = element_rect(fill='white', colour='grey'),
         plot.title=element_text(hjust=0),
         axis.ticks=element_blank(),
-        axis.title=element_text(size=12),
-        axis.text=element_text(size=10),
-        legend.title=element_text(size=12),
+        axis.title=element_text(size=10),
+        axis.text=element_text(size=8),
+        legend.title=element_text(size=10),
         legend.text=element_text(size=10))
 
 # print figure
 FIGURE
+```
+
+```{r}
+#| include: false
+#| label: save-figure
 
 # save figure
 # savePlot("Figure_STRATOS.tif", type="tif")
@@ -180,3 +202,9 @@ FIGURE
 # ensuring that export works from the .qmd file
 ggsave("figures/Figure_STRATOS.tif", plot = FIGURE)
 ```
+
+This example illustrates how a simple simulation study could provide insight into an important potential source of bias, namely measurement error. Here, we only considered classical measurement error, but simulations could easily be extended to incorporate more complex forms of measurement error. For example, the errors may not be drawn from a normal distribution with mean zero or may not be independent of all other variables considered. Instead, the mean of the distribution of errors may depend on the value of another variable in the model, for example, error on BMI may depend on gender. Furthermore, non-normal distributions may be considered, or scenarios in which the variance of the errors depends on the true value of the measurement (heteroskedastic errors), among other possible extensions.
+
+Finally, we note that researchers conducting small-scale simulation studies like the one presented here should reflect on the plausibility of the scenarios considered. For example, knowing whether it is realistic to assume that 50% of the total variance of HbA1c and BMI is due to measurement error (top-right scenario in Figure 2) requires subject-matter knowledge.
+
+## References
