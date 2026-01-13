@@ -1,6 +1,5 @@
 ---
 title: "Reproducible manuscript"
-subtitle: "Of an example simulation study by "
 author: "Lidiya Mishieva"
 format: pdf
 editor: visual
