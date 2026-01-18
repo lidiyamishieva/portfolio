@@ -55,13 +55,6 @@ library(eurostat)
 
 ## UI -----
 
-eurostat_database <- get_eurostat_toc() 
-eurostat_database <- eurostat_database %>% 
-  filter(type %in% c("table", "dataset") & str_detect(title, regex("nuts", ignore_case = TRUE)))
-
-eurostat_datasets <- setNames(eurostat_database$code, eurostat_database$title)
-
-
 ui <- fluidPage(
   
   titlePanel("Small Area Estimation using Eurostat data"),
@@ -69,24 +62,62 @@ ui <- fluidPage(
   sidebarLayout(
     sidebarPanel(
       selectInput(
+        inputId = "selected_nuts",
+        label = "Select NUTS level:",
+        choices = c("NUTS 1", "NUTS 2", "NUTS 3"),
+        selected = "NUTS 1"
+      ),
+      
+      selectInput(
         inputId = "selected_var",
         label = "Select a Eurostat dataset:",
-        choices = eurostat_datasets,
-        selected = "nama_10_gdp"
-      )
+        choices = NULL
+        )
     ),
     
     mainPanel(
       verbatimTextOutput("selected_var_output")
-  )
+    )
   )
 )
+
   
   
 
 ## SERVER -----
 
-server <- function(input, output) {}
+# server <- function(input, output) {}
+
+eurostat_database <- get_eurostat_toc() 
+
+server <- function(input, output, session) {
+
+  observeEvent(input$selected_nuts, {
+
+    # filter datasets based on selected NUTS level
+    filtered_datasets <- eurostat_database %>%
+      filter(type %in% c("table", "dataset")) %>%
+      filter(str_detect(title, regex(input$selected_nuts, ignore_case = TRUE))
+      )
+
+    choices <- filtered_datasets$title
+
+    # update second dropdown
+    updateSelectInput(
+      session,
+      inputId = "selected_var",
+      choices = sort(choices),
+      selected = ""
+    )
+  })
+
+  output$selected_var_output <- renderPrint({
+    list(
+      dataset = input$selected_var
+    )
+  })
+}
+
 
 ## APP -----
 
