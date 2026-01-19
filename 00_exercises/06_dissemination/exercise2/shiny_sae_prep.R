@@ -17,7 +17,7 @@ eurostat_database <- eurostat_database %>%
   filter(str_detect(title, regex("nuts", ignore_case = TRUE)))
 
 # get actual data based on dataset id
-dataset <- get_eurostat(id="lfst_r_lfe2eftpt")
+dataset <- get_eurostat(id="lc_rnum2_r2")
 
 names(dataset)
 
