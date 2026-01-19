@@ -60,7 +60,7 @@ The quality of local infrastructure shapes how individuals evaluate and relate t
 
 ### 3.1 Survey data
 
-For measuring social cohesion, the operationalization is based on the latent model proposed by @bottoni2016. The model was originally validated using indicators from the European Social Survey (ESS) Round 6 (2012). The ESS is a biennial, cross-national survey based ont cross-sectional probability sampling of all persons aged 15 years and older residing in private households within each participating country. In ESS, the data is geo-referenced through Nomenclature of Territorial Units for Statistics (NUTS) regions. The available levels of aggregation of geographic location is different across European countries as illustrated in Table 1.
+For measuring social cohesion, the operationalization is based on the latent model proposed by @bottoni2016. The model was originally validated using indicators from the European Social Survey (ESS) Round 6 (2012). The ESS is a biennial, cross-national survey based ont cross-sectional probability sampling of all persons aged 15 years and older residing in private households within each participating country. In ESS, the data is geo-referenced through Nomenclature of Territorial Units for Statistics (NUTS) regions. The available levels of aggregation of geographic location is different across European countries as illustrated in @tbl-nuts.
 
 +------------+---------------------------------------------------------------------------------------------------------------------+
 | NUTS level | ESS country                                                                                                         |
@@ -76,9 +76,9 @@ For measuring social cohesion, the operationalization is based on the latent mod
 | NUTS 3     | Bulgaria, Croatia, Finland, Hungary, Iceland, Ireland, Lithuania, Slovakia, Slovenia                                |
 +------------+---------------------------------------------------------------------------------------------------------------------+
 
-: Available NUTS levels for respondents’ place of residence by country in ESS 11
+: Available NUTS levels for respondents’ place of residence by country in ESS 11 {#tbl-nuts}
 
-Bottoni’s original framework includes seven dimensions of social cohesion, but this thesis models only five due to data limitations in ESS Round 11 (2023). The dimensions of social support and participation are excluded because the corresponding indicators are unavailable. Using earlier ESS rounds would allow their inclusion but would require outdated and incomplete OSM data. The selected approach prioritizes consistency with current, higher-quality OSM information. The dimensions and the indicators are displayed in Table 2.
+Bottoni’s original framework includes seven dimensions of social cohesion, but this thesis models only five due to data limitations in ESS Round 11 (2023). The dimensions of social support and participation are excluded because the corresponding indicators are unavailable. Using earlier ESS rounds would allow their inclusion but would require outdated and incomplete OSM data. The selected approach prioritizes consistency with current, higher-quality OSM information. The dimensions and the indicators are displayed in @tbl-variables-survey.
 
 +---------------------------------+-----------------------------------------------------------------------------+---------------------------------------------+
 | Dimension                       | Indicator                                                                   | Measurement                                 |
@@ -210,7 +210,7 @@ Bottoni’s original framework includes seven dimensions of social cohesion, but
 |                                 |                                                                             | 10=*Extremely good*                         |
 +---------------------------------+-----------------------------------------------------------------------------+---------------------------------------------+
 
-: ESS round 11 questions measuring five dimensions of social cohesion
+: ESS round 11 questions measuring five dimensions of social cohesion {#tbl-variables-survey}
 
 ### 3.2 Auxiliary data
 
@@ -222,7 +222,7 @@ For administrative data, we use statistics from Eurostat for EU countries and fr
 
 OSM data can be accessed via the read-only application programming interface Overpass API using the Overpass Query Language (Overpass QL), which supports filtering by attributes, geometry, and geographic extent. The database is structured around three core elements: nodes (point coordinates), ways (ordered lists of nodes forming lines or areas), and relations (groupings of nodes and ways). Attributes in OSM are described using tags, which are flexible key–value pairs attached to nodes, ways, and relations.
 
-An OSM snapshot dated 01.01.2023 was used to match ESS11, with queries limited to the administrative boundaries of ESS11 countries that use NUTS classification for official statistics. All attributes documented for each feature were extracted. The key-value pairs used in the queries are listed in the Table 3. The choice of the features is based on the literature review introduced in Chapter 2.
+An OSM snapshot dated 01.01.2023 was used to match ESS11, with queries limited to the administrative boundaries of ESS11 countries that use NUTS classification for official statistics. All attributes documented for each feature were extracted. The key-value pairs used in the queries are listed in @tbl-variables-osm. The choice of the features is based on the literature review introduced in Chapter 2.
 
 +---------------------------------------------------------+------------+----------------------------------------------------------------------------------+
 | Type of infrastructure                                  | Key        | Value                                                                            |
@@ -254,11 +254,11 @@ An OSM snapshot dated 01.01.2023 was used to match ESS11, with queries limited t
 | Land use                                                | landuse    | industrial, residential, retail, military, landfill                              |
 +---------------------------------------------------------+------------+----------------------------------------------------------------------------------+
 
-: Key-value pairs of OpenStreetMap features used for Overpass API queries
+: Key-value pairs of OpenStreetMap features used for Overpass API queries {#tbl-variables-osm}
 
 ## 4 Methods
 
-The analysis proceeds in two main steps. First, a multilevel confirmatory factor analysis (MCFA) model is estimated according to the specification in Table 2, using NUTS region as cluster variable. Factor scores are then computed at the regional level for each factor at regional level. These scores provide aggregate measures of social cohesion and serve as direct estimators in the second step. In this step, multivariate small-area models are estimated in three variants: (M1) without any auxiliary data, (M2) with administrative data, and (M3) with administrative and OSM data. All small area estimates are validated against figures reported in the existing literature, and improvements in estimator efficiency are assessed by comparing the Mean Squared Error (MSE) across the models.
+The analysis proceeds in two main steps. First, a multilevel confirmatory factor analysis (MCFA) model is estimated according to the specification in @tbl-variables-survey, using NUTS region as cluster variable. Factor scores are then computed at the regional level for each factor at regional level. These scores provide aggregate measures of social cohesion and serve as direct estimators in the second step. In this step, multivariate small-area models are estimated in three variants: (M1) without any auxiliary data, (M2) with administrative data, and (M3) with administrative and OSM data. All small area estimates are validated against figures reported in the existing literature, and improvements in estimator efficiency are assessed by comparing the Mean Squared Error (MSE) across the models.
 
 ### 4.1 Multilevel Confirmatory Factor Analysis
 
