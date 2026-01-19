@@ -1,6 +1,7 @@
 # clean up
 rm(list=ls())
 
+# load libraries
 library(tidyverse)
 library(eurostat)
 library(giscoR)
@@ -32,9 +33,6 @@ sub_dataset <- dataset %>%
   mutate(YEAR = substr(TIME_PERIOD, 1, 4)) %>%
   filter(LEVL_CODE == 2) %>%
   filter(YEAR == 2010)
-
-# values is always the relevant variable
-# but problem when by multiple other variables, cant select automatically
 
 
 

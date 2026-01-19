@@ -1,5 +1,7 @@
+# notation of small numbers
 options(scipe=99999)
 
+# load libraries
 library(tidyverse)
 library(shiny)
 library(eurostat)
@@ -7,12 +9,16 @@ library(giscoR)
 library(sf)
 library(gtsummary)
 
+# load the meta data about the estat database
 eurostat_database <- get_eurostat_toc() %>% filter(type %in% c("table", "dataset"))
+
+# load nuts geometries
 nuts <- giscoR::gisco_get_nuts(resolution = "20")
 
-
+# define the user interface
 ui <- fluidPage(
   
+    # add a title of the app
     titlePanel("Geography of EU data"),
 
     sidebarLayout(
@@ -46,7 +52,7 @@ ui <- fluidPage(
     )
 )
 
-
+# define the back-end computation
 server <- function(input, output, session) {
 
   # update dataset list based on NUTS level
@@ -105,6 +111,7 @@ server <- function(input, output, session) {
       first()
   })
   
+  # produce a reactive dataset for plotting and summarizinf
   map_data <- reactive({
     req(selected_dataset_id(), selected_levl_code())
     
@@ -122,6 +129,7 @@ server <- function(input, output, session) {
       st_as_sf()
   })
 
+  # add a plot
   output$map <- renderPlot({
     req(map_data())
     
@@ -129,11 +137,13 @@ server <- function(input, output, session) {
 
   })
   
+  # add a table
   output$descriptives <- renderTable({
     map_data() %>%
       st_drop_geometry() %>%
       select(values) %>%
       tbl_summary(
+        missing = "always",
         type = all_continuous() ~ "continuous2",
         statistic = list(
           all_continuous() ~ c("{mean} ({sd})", "{min} - {max}", "{median} ({p25} - {p75})"))
@@ -143,4 +153,5 @@ server <- function(input, output, session) {
   })
 }
 
+# run the app
 shinyApp(ui = ui, server = server)
