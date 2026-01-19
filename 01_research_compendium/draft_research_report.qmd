@@ -1,0 +1,507 @@
+---
+title: "Research Report"
+subtitle: | 
+  | 
+  |
+  | The use of new data sources in small area estimation of social cohesion
+  |
+  |
+  |
+  |
+  |
+#author: "Lidiya Mishieva (2975882)"
+authors:
+  - "Lidiya Mishieva (2975882)"
+  - "Supervisors: Angelo Moretti, Camilla Salvatore and Peter Lugtig"
+date: today
+date-format: "DD MMMM, YYYY"
+abstract: |
+  |
+  |
+  |
+  |
+  |
+  |
+  |
+  |
+  |
+  |
+  |
+  |
+  |
+  |
+  |
+  |
+  |
+  |
+  |
+  |
+  |
+  | Word count: 2500
+  | Proposed journals: Journal of Official Statistics, Social Indicators Research
+format: pdf
+include-in-header:
+  - text: |
+      \pagenumbering{gobble}
+ # toc: true
+ # lot: true
+editor: visual
+bibliography: references.bib
+---
+
+\newpage
+
+\pagenumbering{arabic}
+
+\tableofcontents
+
+\listoftables
+
+\newpage
+
+## 1 Introduction
+
+In the political, public and academic debate, social cohesion is commonly regarded as a feature that always seems to be currently deteriorating. <!--#  Although social cohesion frequently appears as a 'buzzword' in public and political debates, the concept remains ambiguous, often mobilized to support different agendas. While some seek to emphasize homogeneity of a society as desirable, others address social disparities as obstacles to a cohesive society [@jenson2010]. -->The origins of the concept of social cohesion can be traced back to classical sociological research, which sought to understand the 'social glue' holding modern societies together [@durkheim2018; @ferdinand1887community]. <!--# According to classical theories, modern societies achieve social cohesion not through uniformity but through the integration of diverse social functions and roles [@durkheim2018; @ferdinand1887community].  -->Contemporary research on social cohesion has largely moved away from general sociological theory, but has not arrived at a universally accepted definition yet [@schiefer2016]. <!--# chan2006a identify two main strands in the discussion within social cohesion research: an analytical socio-psychological approach, and a policy-oriented approach. Policy-oriented research mainly focuses on measurement models of social cohesion, where social cohesion is typically defined as a latent, not directly measurable, property of populations.  --> Policy-oriented research mainly focuses on measurement models of social cohesion, where social cohesion is typically defined as a latent, not directly measurable, property of populations [@chan2006a], <!--# While the literature provides multiple different definitions, there is broad agreement on the multi-dimensionality of the construct (@jenson1998mapping; @duhaime2004; @berger-schmitt; @noll2002; @rajulton2006; @bollen1990; @whelan2005; @chan2006a). --> consisting of multiple dimensions (@jenson1998mapping; @duhaime2004; @berger-schmitt; @noll2002; @rajulton2006; @bollen1990; @whelan2005; @chan2006a).
+
+<!--# REMOVE FROM REPORT BECAUSE OF WORD COUNT LIMITATIONS: According to @jenson1998mapping social cohesion can be understood through five core dimensions. Belonging emphasizes shared values and a collective identity; inclusion ensures equal opportunities; participation reflects political and social engagement; recognition entails respect for diversity; and legitimacy concerns trust in and acceptance of societal institutions. In the model proposed by @duhaime2004, social cohesion is reflected in civic participation, including involvement in elections and community-based activities and associations, as well as in demographic stability, social and economic inclusion, and quality of life. @berger-schmitt and @noll2002 emphasize two key aspects: inequality, measured by regional disparities, equal opportunities, and social inclusion, and social capital, reflected in the extent and quality lations as well as in the relation between individuals and institutions. Other contributions highlight different levels and perspectives. @rajulton2006 distinguish social, economic, and political dimensions of cohesion, while @bollen1990 stress the importance of individuals’ perceptions within groups, such as sense of belonging and emotional responses to group membership. @whelan2005 further differentiate micro, meso, and macro levels, corresponding to relationships among individuals, among groups, and between individuals and the broader community. @chan2006a offer an operational framework along two axes: the horizontal–vertical axis, capturing the level of relationships within society, and the subjective–objective axis, distinguishing between individual attitudes and perceptions, and their measurable behavior. -->
+
+<!--# check overview over institutional definitions https://unece.org/sites/default/files/2023-12/2317603_E_ECE_CES_STAT_2023_8_WEB.pdf also chek out this https://esdp-network.net/research-projects/social-polis -->
+
+@bottoni2016 proposes and validates a latent multi-level model of social cohesion as a synthesis of multiple contributions in the literature. Their model distinguishes between the collective and individual dimension of the phenomenon, where social cohesion is treated as a collective property of a population, whereas social inclusion is conceptualized as an individual-level attribute. Dimensions of social cohesion used in Bottoni's model are relational in nature, capturing both practical interactions between individuals (*social support*, *participation*, *density of relations*) and attitudinal dispositions towards individuals, institutions or groups (*interpersonal* and *institutional trust*, *openness towards out-groups*, *legitimacy of institutions*). <!--# The model is validated based on indicators available in the European Social Survey (ESS), and the measurement equivalence across 29 European countries is established. -->
+
+<!--# Questions emerging from this model could concern the interaction between social and spatial relations within and between sub-populations: to what extent is social cohesion shaped by regional patterns of social relations and does it vary or cluster across space? -->
+
+Designing targeted policies to strengthen social cohesion requires evidence on how cohesion varies across sub-national areas. While some dimensions, such as trust, civic participation, and attitudes toward immigration, have been shown to vary spatially within countries [@van2025multilevel]; @moretti2024; @czaika2018; @orteca2015investigation\], systematic evidence on the small-scale spatial distribution of social cohesion across Europe remains limited.
+
+<!--# To design targeted policy interventions that strengthen social cohesion, it is important to examine how social cohesion is distributed across space and whether it varies between sub-national areas. Yet data enabling accurate and precise comparisons across sub-national areas is still lacking. -->
+
+<!--# add some discussion about projects or programs aimed at sub-national level -->
+
+<!--# Although some dimensions of social cohesion, such as interpersonal and institutional trust, have been shown to exhibit spatial variability at the national level [@charron2019measuring; @dindaroglu2023], less is known about the spatial distribution of social cohesion at small geographic scales across Europe. Evidence from the Netherlands suggests that certain indicators of social cohesion vary across administrative units [@van2025multilevel]. Attitudes toward immigration show sub-national variation within European countries [@czaika2018]. In the UK, civic participation and the quality of social relations -->
+
+<!--# check again the indicators -->
+
+<!--# also appear to cluster spatially across administrative areas [@orteca2015investigation]. -->
+
+<!--# FIND MORE -->
+
+<!--# However, evidence on the spatial distirbution of social cohesion at sub-national level across multiple European countries is still lacking. -->
+
+Being measured at individual level, social cohesion indicators need to be aggregated to regional level. However, survey data is typically not designed for obtaining efficient estimates at a sub-national level. <!--# While sample surveys usually suffer from small sample sizes, traditional national enumerations, such as the Census, achieve wide coverage but they are costly and face problems with timeliness. --> Small area estimation (SAE) offers a methodological tool capable of producing more accurate and precise estimates using survey data. SAE consists of estimating target parameters for groups or 'areas' where the sample size is small or which do not appear in the sampling design using statistical models <!--# (model-based or model-assisted approaches are available) -->. This is done by ‘borrowing strength’ via incorporating auxiliary information correlated with target estimates [@rao2015]. <!--# Further approaches have been proposed to improve the efficiency of SAE estimators such as spatial SAE [@pratesi2007; @bertarelli2021; @wang2025] which additionally exploits spatial autocorrelation of units located geographically close to each other or multivariate SAE [@benavent2016], allowing for exploiting correlation among the outcomes of interest for more accurate predictions. -->Compared to direct estimates, SAE typically lowers the mean squared error by leveraging the bias-variance trade-off. For social cohesion, <!--# spatial SAE could improve the estimates, because of clustering of social cohesion across space, and  --> multivariate SAE [@benavent2016] could help making use of the relatedness of different social cohesion dimensions and improve the estimated even further. <!--#  ADD: Explain difference between area and area-unit level model. --> <!--# Since social cohesion is multi-dimensional, consolidating dimensions is essential, as estimates of single indicators cannot provide a clear picture for the public and policymakers. To construct composite measures of latent constructs, various SAE approaches have been applied, such as (weighted) averages of small area estimates or small area estimates of factor scores [@moretti2019]. -->
+
+Geographic big data can potentially help explaining spatial variability in outcomes modeled through small area estimation by offering high-resolution geo-referenced data of built and natural environment. OpenStreetMap (OSM) represents one of the most prominent of these sources [@goodchild2013]. <!--# : a rapidly expanding, volunteer-driven mapping project whose openness and accessibility make it more practical for research and policy use than proprietary products such as Google Places. -->Although some studies highlight its potential for official statistics [@salvucci2021, @ninivaggi2023; @balducci2019], its use as auxiliary information in SAE remains unexplored. <!--# OSM offers a variety of data, including buildings, land use and road infrastructure [@mooney2010], that is produced in different ways: by using GPS [@neis2012], digitizing areal imagery [@neis2012], or AI-assisted image processing and tagging [@fila2025]. --> OSM’s data quality and completeness have been subject of extensive investigation. In terms of coverage, regions with higher building density are better covered, meaning that urban areas better represented in OSM [@zhou2017]. But there are differences: urban areas which are located in Europe, are economically better off and more urbanized have the highest building completeness [@herfort2023]. <!--# As sub-national economic segregation tends to be more persistent than the segregation on national level in the EU [@komarova2021], this implies varying data quality across sub-national units. --> <!--# In addition, there is evidence of spatial autocorrelation in mapping, activity in OSM being a function of proximity to more complete [@herfort2023] and more dense [@jokararsanjani2014] areas.-->While street network is well covered across the globe [@barrington-leigh2017] feature-dependent completeness for buildings was evaluated only in some local studies [@balducci2019; @maina2019<!--#  FIND MORE -->]. <!--# Machine learning approaches are proposed to automate and improve building classification in OSM [@bandam2022; @atwal2022]. --> <!--# REMOVE FROM REPORT BECAUSE OF WORD COUNT LIMITATIONS: Investigation of tagging practices in OSM has shown that data contributors tend to rather add missing geometries than adding tags to already existing features [@davidovic2016]. In general, tagging practices are characterized by low compliance with suggested annotation rules of OSM [@davidovic2016]. While the contributors in some of the highest contributing countries (Germany, France, UK) are rather professionals [@yang2016], the majority of contributors do not participate more than once or twice in mapping [@bégin2017]. -->
+
+<!--# REMOVE FROM REPORT BECAUSE OF WORD COUNT LIMITATIONS: The literature shows that social cohesion is a latent phenomenon, which nature is relational and has a spatial dimension to it. Yet little is known about its distribution at small geographic scales in Europe. This gap persists because social cohesion, while being a collective property of population, needs to be measured at individual level and sample-based survey data are not designed to produce reliable local estimates, because of small sample sizes at sub-national level. Small area estimation offers methodological tools to produce reliable estimates in such cases by incorporating auxiliary information into the model predicting target parameters. Built infrastructure, being an inherent part of day-to-day life by structuring the flow and concentration of social interactions and being an object of relation between individuals and institutions, can be suitable auxiliary data in producing local estimates of social cohesion. The literature has shown that geographic big data from OSM potentially suits the purpose of this analysis. While there is variation in data quality within Europe due to the rural-urban divide and economic segregation between and within European countries, Europe is well represented in terms of infrastructure data in OSM. Least represented areas are expected to be rural areas on the economic periphery of Europe, unless these areas are touristic or close to more built up regions. This means that estimates for these areas based on OSM data will be less reliable which reproduces the problem of rural areas being traditionally less studied in terms of social cohesion. Nonetheless, the growing coverage and accessibility of OSM data make it worthwhile to investigate its potential as auxiliary information in SAE models for capturing spatial variation of social cohesion at small geographic scales. ALSO RQ MISSING -->
+
+<!--# The literature has shown that geographic big data from OSM potentially suits the purpose of improving the small area estimates of social cohesion estimated from survey data. While there is variation in data quality within Europe due to the rural-urban divide and economic segregation between and within European countries, Europe is yet well represented in terms of infrastructure data in OSM. Additionally, the growing coverage and accessibility of OSM data make it worthwhile to investigate its potential as auxiliary information in SAE models for capturing spatial variation of social cohesion at small geographic scales.  -->
+
+Against this background, the question arises: To what extent can small area estimates of social cohesion at the sub-national level in Europe be improved by the use of new data sources? This thesis is organized as follows. Section 2 reviews the literature on the immediate residential environment as a determinant of social cohesion, with the aim of identifying suitable covariates for the small-area estimation models that can be derived from <!--# administrative statistics and -->OSM. Section 3 provides an overview of the data sources and variables used in the analysis. Section 4 then describes the methodological approach.
+
+## 2 Theoretical background
+
+<!--#  Social cohesion is not formed in abstraction, but emerges from everyday interactions embedded in specific places. The local environment, understood here as the immediate residential context in which individuals live, can shape multiple aspects of social cohesion, including the formation of interpersonal ties, relations to social groups, and connections to institutions. A local perspective is therefore essential for identifying and explaining regional variation in social cohesion. -->
+
+*Relations between individuals*
+
+Spatial composition and spatial configuration are characteristics of physical space, shaping the conditions under which social interaction between individuals becomes more or less likely [@small2019]. Spatial composition refers to the physical elements that constitute a space and can serve as locations for social interaction. However, not all places contribute equally to social relations. Places serving as intentional gathering places can act as foci around which people organize their interactions and thereby will form interpersonal ties and clusters of social connections [@feld1981]. By contrast, spaces that bring people together only through mere co-presence, without supporting shared activities or a sense of collective identity, may have limited impact on building social cohesion among residents [@wickes2018].
+
+<!--#  Some settings primarily enable incidental co-location, while others are explicitly designed for intentional gatherings [@small2019]. These intentional gathering places can act as foci around which people organize their interactions and thereby will form interpersonal ties and clusters of social connections [@feld1981]. ADD EXAMPLES FROM LITERATURE? By contrast, spaces that bring people together only through mere co-presence, without supporting shared activities or a sense of collective identity, may have limited impact on building social cohesion among residents [@wickes2018]. ADD EXAMPLES FROM LITERATURE?  -->
+
+Spatial configuration refers to the arrangement of land use and the segmentation of physical space by man-made or natural boundaries, which can act as barriers to social interaction [@small2019]. <!--# IF USING, INTRODUCE POROSITY BETTER In this sense, configuration also shapes an areal social porosity: the extent to which its layout allows social ties to move easily across space [@hipp2014]. Features that function as wedges such as highways and rivers, or create social holes such as large parks or industrial zones, reduce porosity by carving up the environment and limiting points of contact. Neighborhoods with lower porosity show weaker neighboring, attachment, and cohesion because these barriers constrain the flow of interpersonal ties [@hipp2014]. -->The extent to which its layout allows social ties to move easily across space can impose constraints on how social relations are built and maintained within this space [@hipp2014]. <!--# Further, empirical research demonstrates that walkability and accessibility of local environments play an important role in enabling everyday interaction: when amenities are located within walking distance, residents are more likely to move through their neighborhoods, increasing the chance of informal encounters in public space [@lund2003]. Walkable, pedestrian-oriented areas are associated with stronger neighborly relations, greater political participation, higher levels of trust, and more general social engagement [@leyden2003]. --> Low-density, single-use layouts in residential environments reduce perceived safety for pedestrians and cyclists and can discourage movement [@cho2009]. Individuals perceive walking in parks as safer and more attractive than walking through residential areas [@basu2022]. In addition, some spatial features can have ambivalent effects: retail destinations may attract outsiders whom local residents interpret as a potential threat to safety [@foster2013].
+
+*Relations between individuals and groups*
+
+Social infrastructure – spaces such as libraries, parks, educational institutions, and community centers – is commonly understood as infrastructure that serves as networking space thereby facilitating inter-personal trust [@joshi2022]. These interactions can also facilitate positive relations between different social groups [@christie1954]. Areas with greater availability of social infrastructure expose residents to a broader range of potentially heterogeneous social contacts [@heine2025; @fraser2024]. <!--# IS NOT SOCIAL INFRASTRUCTURE INTRODUCE BETTER LATER However, the evidence is mixed: for instance, proximity to refugee accommodations does not always affect locals’ attitudes, suggesting that mere co-presence is insufficient to foster positive intergroup relations [@schmidt2023]. --> Persistent inequalities in access to amenities driven by social segregation across space [@michelangeli2025] may limit the potential for cross-group encounters. Further, social segregation is reproduced within certain types of social infrastructure by reinforcing interactions among similar groups rather than fostering diversity [@fraser2024a]. <!--# @fraser2024a have shown that while parks and social businesses were linked to an increase of inter-income encounters, community spaces were conversely linked to more same-income encounters. -->
+
+*Relations between individuals and institutions*
+
+The quality of local infrastructure shapes how individuals evaluate and relate to public institutions. When residents feel satisfied with the amenities and services in their residential area, they tend to express higher trust in local authorities, which can serve as a foundation to general public trust [@fitzgerald2014]. At the same time, perceptions of deteriorating or unequal service provision can erode institutional trust, as seen in widening urban–rural divides where rural residents increasingly view their socio-economic infrastructure as lagging behind that of urban centers [@mckay2023; @mitsch2021]. <!--#  Community engagement also matters: individuals who feel embedded in local networks and who trust those around them are more likely to extend that trust toward public institutions [@putnam1994]. -->Dissatisfaction with local amenities can prompt people to move elsewhere [@dustmann2014; @ulrich-schad2015 <!--# ; @rupasingha2004; @henning2012 -->], suggesting that institutional performance additionally indirectly shapes trust by influencing residential stability and the ability to sustain long-term community ties. <!--# In this way, institutions are not only evaluated on formal outputs but are embedded in a broader ecology of place-based satisfaction, social participation, and mobility decisions.  -->
+
+<!--# conclude with relevant predictors from literature  -->
+
+<!--# *Contextual socio-economic and structural predictors of social cohesion* demographic data, population density, GDP, poverty, employment, criminal statistics, maybe health-related data -->
+
+## 3 Data
+
+<!--# The analyses make use of multiple data sources: survey data, official statistics and OpenStreetMap data. -->
+
+### 3.1 Survey data
+
+For measuring social cohesion, the operationalization is based on the latent model proposed by @bottoni2016. The model was originally validated using indicators from the European Social Survey (ESS) Round 6 (2012). The ESS is a biennial, cross-national survey <!--# designed to measure attitudes, beliefs, and behavioral patterns across European societies through the use of standardized questionnaires. The survey employs--> based ont cross-sectional probability sampling of all persons aged 15 years and older residing in private households within each participating country. In ESS, the data is geo-referenced through Nomenclature of Territorial Units for Statistics (NUTS) regions. The available levels of aggregation of geographic location is different across European countries as illustrated in Table 1. <!--# add sampling design and weights; add table with summary of sample size in ESS per area, and sampling fraction to show how small is the sample size and why direct estimators would be bad and SAE is good idea  -->
+
++------------+---------------------------------------------------------------------------------------------------------------------+
+| NUTS level | ESS country                                                                                                         |
++============+=====================================================================================================================+
+| NUTS 1     | Cyprus, Germany, Italy, Montenegro, United Kingdom                                                                  |
++------------+---------------------------------------------------------------------------------------------------------------------+
+|            |                                                                                                                     |
++------------+---------------------------------------------------------------------------------------------------------------------+
+| NUTS 2     | Austria, Belgium, France, Greece, Latvia, Netherlands, Norway, Poland, Portugal, Serbia, Spain, Sweden, Switzerland |
++------------+---------------------------------------------------------------------------------------------------------------------+
+|            |                                                                                                                     |
++------------+---------------------------------------------------------------------------------------------------------------------+
+| NUTS 3     | Bulgaria, Croatia, Finland, Hungary, Iceland, Ireland, Lithuania, Slovakia, Slovenia                                |
++------------+---------------------------------------------------------------------------------------------------------------------+
+
+: Available NUTS levels for respondents’ place of residence by country in ESS 11
+
+Bottoni’s original framework includes seven dimensions of social cohesion, but this thesis models only five due to data limitations in ESS Round 11 (2023). The dimensions of social support and participation are excluded because the corresponding indicators are unavailable. Using earlier ESS rounds would allow their inclusion but would require outdated and incomplete OSM data. The selected approach prioritizes consistency with current, higher-quality OSM information. The dimensions and the indicators are displayed in Table 2.
+
+<!--# Bottoni’s original construct comprises seven dimensions of social cohesion. In this thesis, however, only five of these dimensions are modeled. The dimensions of social support and participation are excluded due to the absence of suitable indicators in the most recent ESS wave (Round 11, 2023). Although using data from Round 6 would permit inclusion of all dimensions, integrating these older survey data with contemporaneous OSM information would necessitate reliance on outdated and largely incomplete OSM snapshots. By instead using ESS Round 11, the number of available indicators is reduced to ensure consistency with current and higher-quality OSM data. The dimensions and the indicators are displayed in TABLE XY. -->
+
++---------------------------------+-----------------------------------------------------------------------------+---------------------------------------------+
+| Dimension                       | Indicator                                                                   | Measurement                                 |
++=================================+=============================================================================+=============================================+
+| 1\. Interpersonal trust         | 1\. Most people can be trusted or you can’t be too careful                  | 0=*You can't be too careful*                |
+|                                 |                                                                             |                                             |
+|                                 |                                                                             | 10=*Most people can be trusted*             |
++---------------------------------+-----------------------------------------------------------------------------+---------------------------------------------+
+|                                 |                                                                             |                                             |
++---------------------------------+-----------------------------------------------------------------------------+---------------------------------------------+
+|                                 | 2\. Most people try to take advantage of you, or try to be fair             | 0=*Most people try to take advantage of me* |
+|                                 |                                                                             |                                             |
+|                                 |                                                                             | 10=*Most people try to be fair*             |
++---------------------------------+-----------------------------------------------------------------------------+---------------------------------------------+
+|                                 |                                                                             |                                             |
++---------------------------------+-----------------------------------------------------------------------------+---------------------------------------------+
+|                                 | 3\. Most of the time people helpful or mostly looking out for themselves    | 0=*People mostly look out for themselves*   |
+|                                 |                                                                             |                                             |
+|                                 |                                                                             | 10=*People mostly try to be helpful*        |
++---------------------------------+-----------------------------------------------------------------------------+---------------------------------------------+
+|                                 |                                                                             |                                             |
++---------------------------------+-----------------------------------------------------------------------------+---------------------------------------------+
+| 2\. Density of social relations | 4\. How often socially meet with friends, relatives or colleagues           | 1=*Never*                                   |
+|                                 |                                                                             |                                             |
+|                                 |                                                                             | 2=*Less than once a month*                  |
+|                                 |                                                                             |                                             |
+|                                 |                                                                             | 3=*Once a month*                            |
+|                                 |                                                                             |                                             |
+|                                 |                                                                             | 4=*Several times a month*                   |
+|                                 |                                                                             |                                             |
+|                                 |                                                                             | 5=*Once a week*                             |
+|                                 |                                                                             |                                             |
+|                                 |                                                                             | 6=*Several times a week*                    |
+|                                 |                                                                             |                                             |
+|                                 |                                                                             | 7=*Every day*                               |
++---------------------------------+-----------------------------------------------------------------------------+---------------------------------------------+
+|                                 |                                                                             |                                             |
++---------------------------------+-----------------------------------------------------------------------------+---------------------------------------------+
+|                                 | 5\. How many people with whom you can discuss intimate and personal matters | 0=*None*                                    |
+|                                 |                                                                             |                                             |
+|                                 |                                                                             | 1=*1*                                       |
+|                                 |                                                                             |                                             |
+|                                 |                                                                             | 2=*2*                                       |
+|                                 |                                                                             |                                             |
+|                                 |                                                                             | 3=*3*                                       |
+|                                 |                                                                             |                                             |
+|                                 |                                                                             | 4=*4-6*                                     |
+|                                 |                                                                             |                                             |
+|                                 |                                                                             | 5=*7-9*                                     |
+|                                 |                                                                             |                                             |
+|                                 |                                                                             | 6=*10 or more*                              |
++---------------------------------+-----------------------------------------------------------------------------+---------------------------------------------+
+|                                 |                                                                             |                                             |
++---------------------------------+-----------------------------------------------------------------------------+---------------------------------------------+
+|                                 | 6\. Take part in social activities compared to others of same age           | 1=*Much less than most*                     |
+|                                 |                                                                             |                                             |
+|                                 |                                                                             | 2=*Less than most*                          |
+|                                 |                                                                             |                                             |
+|                                 |                                                                             | 3=*About the same*                          |
+|                                 |                                                                             |                                             |
+|                                 |                                                                             | 4=*More than most*                          |
+|                                 |                                                                             |                                             |
+|                                 |                                                                             | 5=*Much more than most*                     |
++---------------------------------+-----------------------------------------------------------------------------+---------------------------------------------+
+|                                 |                                                                             |                                             |
++---------------------------------+-----------------------------------------------------------------------------+---------------------------------------------+
+| 3\. Openness                    | 7\. Immigration bad or good for country’s economy                           | 0=*Bad for the economy*                     |
+|                                 |                                                                             |                                             |
+|                                 |                                                                             | 1=*Good for the economy*                    |
++---------------------------------+-----------------------------------------------------------------------------+---------------------------------------------+
+|                                 |                                                                             |                                             |
++---------------------------------+-----------------------------------------------------------------------------+---------------------------------------------+
+|                                 | 8\. Country’s cultural life undermined or enriched by immigrants            | 0=*Cultural lift undermined*                |
+|                                 |                                                                             |                                             |
+|                                 |                                                                             | 10=*Cultural life enriched*                 |
++---------------------------------+-----------------------------------------------------------------------------+---------------------------------------------+
+|                                 |                                                                             |                                             |
++---------------------------------+-----------------------------------------------------------------------------+---------------------------------------------+
+|                                 | 9\. Immigrants make country worse or better place to live                   | 0=*Worse place to live*                     |
+|                                 |                                                                             |                                             |
+|                                 |                                                                             | 10=*Better place to live*                   |
++---------------------------------+-----------------------------------------------------------------------------+---------------------------------------------+
+|                                 |                                                                             |                                             |
++---------------------------------+-----------------------------------------------------------------------------+---------------------------------------------+
+| 4\. Institutional trust         | 10\. Trust in country’s parliament                                          | 0=*No trust at all*                         |
+|                                 |                                                                             |                                             |
+|                                 |                                                                             | 10=*Complete trust*                         |
++---------------------------------+-----------------------------------------------------------------------------+---------------------------------------------+
+|                                 |                                                                             |                                             |
++---------------------------------+-----------------------------------------------------------------------------+---------------------------------------------+
+|                                 | 11\. Trust in the legal system                                              | 0=*No trust at all*                         |
+|                                 |                                                                             |                                             |
+|                                 |                                                                             | 10=*Complete trust*                         |
++---------------------------------+-----------------------------------------------------------------------------+---------------------------------------------+
+|                                 |                                                                             |                                             |
++---------------------------------+-----------------------------------------------------------------------------+---------------------------------------------+
+|                                 | 12\. Trust in politicians                                                   | 0=*No trust at all*                         |
+|                                 |                                                                             |                                             |
+|                                 |                                                                             | 10=*Complete trust*                         |
++---------------------------------+-----------------------------------------------------------------------------+---------------------------------------------+
+|                                 |                                                                             |                                             |
++---------------------------------+-----------------------------------------------------------------------------+---------------------------------------------+
+|                                 | 13\. Trust in political parties                                             | 0=*No trust at all*                         |
+|                                 |                                                                             |                                             |
+|                                 |                                                                             | 10=*Complete trust*                         |
++---------------------------------+-----------------------------------------------------------------------------+---------------------------------------------+
+|                                 |                                                                             |                                             |
++---------------------------------+-----------------------------------------------------------------------------+---------------------------------------------+
+| 5\. Legitimacy of institutions  | 14\. How satisfied with the national government                             | 0=*Extremely dissatisfied*                  |
+|                                 |                                                                             |                                             |
+|                                 |                                                                             | 10=*Extremely satisfied*                    |
++---------------------------------+-----------------------------------------------------------------------------+---------------------------------------------+
+|                                 |                                                                             |                                             |
++---------------------------------+-----------------------------------------------------------------------------+---------------------------------------------+
+|                                 | 15\. How satisfied with the way democracy works in country                  | 0=*Extremely dissatisfied*                  |
+|                                 |                                                                             |                                             |
+|                                 |                                                                             | 10=*Extremely satisfied*                    |
++---------------------------------+-----------------------------------------------------------------------------+---------------------------------------------+
+|                                 |                                                                             |                                             |
++---------------------------------+-----------------------------------------------------------------------------+---------------------------------------------+
+|                                 | 16\. State of education in country nowadays                                 | 0=*Extremely bad*                           |
+|                                 |                                                                             |                                             |
+|                                 |                                                                             | 10=*Extremely good*                         |
++---------------------------------+-----------------------------------------------------------------------------+---------------------------------------------+
+|                                 |                                                                             |                                             |
++---------------------------------+-----------------------------------------------------------------------------+---------------------------------------------+
+|                                 | 17\. State of health services in country nowadays                           | 0=*Extremely bad*                           |
+|                                 |                                                                             |                                             |
+|                                 |                                                                             | 10=*Extremely good*                         |
++---------------------------------+-----------------------------------------------------------------------------+---------------------------------------------+
+
+: ESS round 11 questions measuring five dimensions of social cohesion
+
+### 3.2 Auxiliary data
+
+#### 3.2.1 Adminstrative data
+
+For administrative data, we use statistics from Eurostat for EU countries and from NOMIS for the UK. These sources provide reliable and comparable administrative data for NUTS-regions. The variables included in the analysis are population density, GDP per capita, employment, and number of police-recorded offences. <!--# Add justification, add more general information -->
+
+#### 3.2.2 OpenStreetMap data
+
+<!--# Database and data access -->
+
+<!--# OSM is a collaborative, open-source geospatial database that provides continuously updated information on the physical and built environment worldwide. -->
+
+<!--# REMOVE FROM REPORT TO CUT THE NUMBER OF WORDS Data access is available through several application programming interfaces (APIs). For read-only access, the Overpass API is sufficient. It allows users to extract customized subsets of OSM data using the Overpass Query Language (Overpass QL), which supports filtering by attributes, geometry, and geographic extent. The database is structured around three core elements: nodes (point coordinates), ways (ordered lists of nodes forming lines or areas), and relations (groupings of nodes and ways). Attributes in OSM are described using tags, which are flexible key–value pairs attached to nodes, ways, and relations. Contributors can introduce any key as needed but general community guidelines exist to ensure consistency across the database. In OSM tagging conventions, top-level (primary) tags define the basic type of a map feature (such as 'amenity' or 'landuse', while other tags provide additional information. -->
+
+OSM data can be accessed via the read-only application programming interface Overpass API using the Overpass Query Language (Overpass QL), which supports filtering by attributes, geometry, and geographic extent. The database is structured around three core elements: nodes (point coordinates), ways (ordered lists of nodes forming lines or areas), and relations (groupings of nodes and ways). Attributes in OSM are described using tags, which are flexible key–value pairs attached to nodes, ways, and relations.
+
+<!--# Data collection -->
+
+<!--# Overpass endpoints are subject to rate limits, timeouts, and server load. Data were collected via the Overpass Turbo browser interface, which trades extra time for low RAM use. To avoid server timeouts, the data was queried in batches. To filter irrelevant objects, only ways (polylines/polygons) and relations (multipolygons) were requested for most features, with few exceptions, where point geometries were plausible (give box, shower). To reduce data transmission time the extracted spatial information was minimzed so that only geometric centers (centroids) were requested for features expected to be buildings, mobile objects, or open spaces (e.g., parks, playgrounds). For roads and land use, full polygons were extracted since these geometries often cross administrative boundaries and area measurements, rather than counts, are of interest.-->
+
+An OSM snapshot dated 01.01.2023 was used to match ESS11, with queries limited to the administrative boundaries of ESS11 countries that use NUTS classification for official statistics. All attributes documented for each feature were extracted. The key-value pairs used in the queries are listed in the Table 3. The choice of the features is based on the literature review introduced in Chapter 2.
+
++---------------------------------------------------------+------------+----------------------------------------------------------------------------------+
+| Type of infrastructure                                  | Key        | Value                                                                            |
++=========================================================+============+==================================================================================+
+| **Buildings**                                           |            |                                                                                  |
++---------------------------------------------------------+------------+----------------------------------------------------------------------------------+
+| Education                                               | amenity    | college, kindergarden, library, school, university                               |
++---------------------------------------------------------+------------+----------------------------------------------------------------------------------+
+| Healthcare                                              | amenity    | clinic, doctors, hospital, nursing_home, pharmacy, social_facility               |
++---------------------------------------------------------+------------+----------------------------------------------------------------------------------+
+| Cultural/social gathering                               | amenity    | community_centre, social_centre, nightclub                                       |
++---------------------------------------------------------+------------+----------------------------------------------------------------------------------+
+| Facilities                                              | amenity    | give_box, shower                                                                 |
++---------------------------------------------------------+------------+----------------------------------------------------------------------------------+
+| Other                                                   | amenity    | internet_cafe, kitchen, marketplace, place_of_worship, public_bath, refugee_site |
++---------------------------------------------------------+------------+----------------------------------------------------------------------------------+
+|                                                         |            |                                                                                  |
++---------------------------------------------------------+------------+----------------------------------------------------------------------------------+
+| **Natural features, land use and other infrastructure** |            |                                                                                  |
++---------------------------------------------------------+------------+----------------------------------------------------------------------------------+
+| Open places                                             | leisure    | park, playground                                                                 |
++---------------------------------------------------------+------------+----------------------------------------------------------------------------------+
+| Roads for motor vehicle traffic                         | highway    | motorway, trunk, primary, secondary, tertiary, residential                       |
++---------------------------------------------------------+------------+----------------------------------------------------------------------------------+
+| Roads for primarily pedestrian traffic                  | highway    | living_street, pedestrian, footway, bridleway, steps, path, sidewalk, crossing   |
++---------------------------------------------------------+------------+----------------------------------------------------------------------------------+
+| Natural barriers                                        | waterway   | river                                                                            |
++---------------------------------------------------------+------------+----------------------------------------------------------------------------------+
+| Land use                                                | landuse    | industrial, residential, retail, military, landfill                              |
++---------------------------------------------------------+------------+----------------------------------------------------------------------------------+
+
+: Key-value pairs of OpenStreetMap features used for Overpass API queries
+
+## 4 Methods
+
+The analysis proceeds in two main steps. First, a multilevel confirmatory factor analysis (MCFA) model is estimated according to the specification in Table 2, using NUTS region as cluster variable. Factor scores are then computed at the regional level for each factor at regional level. These scores provide aggregate measures of social cohesion and serve as direct estimators in the second step. In this step, multivariate small-area models are estimated in three variants: (M1) without any auxiliary data, (M2) with administrative data, and (M3) with administrative and OSM data. All small area estimates are validated against figures reported in the existing literature, and improvements in estimator efficiency are assessed by comparing the Mean Squared Error (MSE) across the models.
+
+### 4.1 Multilevel Confirmatory Factor Analysis
+
+<!--# Factor Analysis (FA) is a family of statistical techniques used in multivariate analysis to model the relationships among observed variables (indicators) in terms of underlying latent variables (factors). Confirmatory Factor Analysis (CFA) tests a theoretically specified factor structure. MCFA extends CFA by decomposing indicator variances into within- and between-cluster components, allowing latent factor structures to be modeled separately at different levels.  -->
+
+<!--#  MCFA is appropriate when ... -->
+
+<!--# For the remainder of this thesis, within-level and individual level will be used interchangeably, as will between-level and regional level.-->
+
+The two-level MCFA model can be defined in terms of its within- and between-level components. At the within-level, the model <!--# can be written as -->is:
+
+\begin{equation}
+y_{ijk} = \alpha_{jk} + \lambda_{Wk} \eta_{Wij} + \epsilon_{Wijk},
+\end{equation}
+
+where $y_{ijk}$ denotes the observed value of respondent $i = 1, ..., I$ in region $j=1,...,J$ on indicator $k=1,...,K$. Here, $\alpha_{jk}$ is the intercept of indicator $k$ in region $j$, $\lambda_{Wk}$ is the within-level factor loading $\lambda_{W}$ of indicator variable $k$. $\eta_{Wij}$ is the score of the respondent $i$ in region $j$ on the within-level latent factor, and $\epsilon_{Wijk}$ is the within-level residual. At the between-level, the model is specified as:
+
+\begin{equation}
+\alpha_{jk} = \nu_{k} + \lambda_{Bk} \eta_{Bj} + \epsilon_{Bjk},
+\end{equation}
+
+where $\nu_{k}$ denotes the grand (cross-region) intercept of indicator $k$, $\lambda_{Bk}$ is the between-level factor loading of indicator variable $k$, $\eta_{Bj}$ is the score of region $j$ on the between-level latent factor, and $\epsilon_{Bjk}$ is the between-level error term, also referred to as random intercept in multilevel analysis. The within and between components of the model are connected via the intercept $a_{jk}$, which acts as a latent random variable. Its variability is explained by the between-level factor $\eta_{Bj}$, while any remaining variance is captured by the between–level residual $\epsilon_{Bjk}$.
+
+In matrix notation, MCFA can be expressed through its variance structure. The total covariance matrix of the observed indicators is decomposed into within- and between-level components:
+
+\begin{align}
+V(y_{gi}) &= \Sigma_{B} + \Sigma_{W}, \\
+\Sigma_{B} &= \Lambda_{B} \Psi_{B} \Lambda_{B}^{T} + \Theta_{B}, \\
+\Sigma_{W} &= \Lambda_{W} \Psi_{W} \Lambda_{W}^{T} + \Theta_{W},
+\end{align}
+
+where $\Sigma_{W}$ and $\Sigma_{B}$ are the modeled covariance matrices, $\Lambda_{W}$ and $\Lambda_{B}$ are the matrices of factor loadings, $\Psi_{W}$ and $\Psi_{B}$ are the factor covariance matrices, while $\Theta_W$ and $\Theta_{B}$ the covariance matrices of the residuals.
+
+For the present model, all indicators are treated as continuous and residual covariance matrices $\Theta$ are estimated directly from the data.
+
+<!--#  When indicators are continuous, the measurement model and the decomposition of variance into within- and between-level components can be defined directly on the observed scale. For categorical indicators, however, the residual variance matrix $\Theta$ of the observed responses cannot be directly estimated from the data, because it depends on the marginal distribution of the categories. To address this, each observed categorical response is assumed to arise from an underlying continuous latent response variable $y∗$. This latent-response scale provides a continuous basis on which residual variances can be properly defined. Associations among ordinal and binary indicators are then represented by polychoric and tetrachoric correlations, which approximate the covariances of the underlying continuous variables (@muthén1985). -->
+
+*Estimation of factor scores*
+
+Once a measurement model is determined, factor scores can be computed for both within- and between-level latent factors. For within-level factors with continuous indicators, factor scores can be estimated using the regression method (@thomson1935; @thurstone1935), which corresponds to the posterior mean of the latent factor given the observed data. The factor scores for an individual $i$ are given by:
+
+\begin{equation}
+\hat{F}_{\eta_{i}} = \hat{\Psi} \hat{\Lambda}^{T} (\Sigma(\hat{\Theta}))^{-1} y_{i}^{T},
+\end{equation}
+
+where $\hat{\Lambda}$ is the estimated matrix of factor loadings, $\hat{\Psi}$ is the estimated covariance matrix of latent factors, $\Sigma(\hat{\Theta})$ is the estimated covariance matrix of the residuals of observed responses, and $y_{i}$​ is the vector of observed responses for individual $i$.
+
+In MCFA, cluster-level indicators correspond to random intercepts, which are latent variables themselves. Between-level factor scores can be estimated using empirical Bayes methods in combination with full-information ML estimation, with posterior means computed conditional on the model and observed data <!--# via numerical integration  -->(@asparouhov2015). <!--# In the presence of both continuous and categorical indicators, as is the case in the present model, factor scores are likewise obtained as posterior expectations on the latent-response scale.  -->The estimation of the model and the factor scores is performed in *Mplus*, Version 8.11.
+
+<!--# Latent model of social cohesion -->
+
+<!--# Figure XY illustrates the multi-level CFA model applied to the latent model of social cohesion. At the within-level observed indicators ($y_{W_{ij1}}-y_{W_{ij17}}$) load onto the five latent factors ($\eta_{W_{ij1}}-\eta_{W_{ij5}}$). At the between level, group intercepts ($\alpha_{j1}-\alpha_{j17}$) of the observed indicators load onto five aggregate latent factors ($\eta_{B_{j1}}-\eta_{B_{j5}}$).  -->
+
+<!-- ![](diagram.png){width="663"} -->
+
+<!--# This paper uses a partial adaptation of Bottoni’s (2016) framework, which originally included seven indicators and two second-order factors: 'social cohesion' (between-level) and 'social inclusion' (within-level). Due to data limitations, two indicators are omitted, and the model captures only the relationships among the remaining factors. Note, that this thesis does not aim to develop a new indicator of social cohesion. Rather, it applies Bottoni’s (2016) framework to contemporary data in order to generate factor scores. -->
+
+<!--# The model used in this paper is a partial adaptation of Bottoni’s (2016) framework, which originally included seven indicators and two second-order factors: 'social cohesion' (between-level) and 'social inclusion' (within-level). Due to the data availability issues two of the seven indicators are omitted, and the estimated model captures only the relationships among the remaining factors, without a common factor across all dimensions. Note, that this thesis does not aim to develop a new indicator of social cohesion. Rather, it applies Bottoni’s (2016) theoretical framework and validated construct to contemporary data in order to generate factor scores. -->
+
+<!--# , while explicitly acknowledging the constraints imposed by indicator availability. -->
+
+### 4.2 Small Area Estimation approach
+
+Consider a finite population $U$ with size $N$ divided into $D$ small areas (domains) with indexes $d=1,...,D$ and size $N_d$. The sample size $n$ is the sum $\Sigma_{d} n_{d}$ of small area sample sizes $n_{d}$. Let $y_{d} = (y_{d1},...,y_{dK})^T$ denote a vector of direct survey estimators for $Y_{d}$ based on a random sample $s$ of size $n$ selected from the population $U$. $Y_{d}$ denotes the population mean of $K$ characteristics of interest in small area $d$.
+
+The univariate @fay1979 model, with $K=1$, is defined in two stages. The first stage consists of the sampling model:
+
+\begin{equation}
+y_{d} = Y_{d} + e_{d}, e_{d} ∼ N(0, \sigma^{2}_{d}),
+\end{equation}
+
+where $e_{d}$ represents the sampling error, assumed to be independent across and within small areas, with known variance $\sigma^{2}_{d}$. The sampling model accounts for the sampling variability of the direct estimators $y_{d}$, whereas in the second stage, the population means, $Y_d$ are linked to the auxiliary variables via the linking model:
+
+\begin{equation}
+Y_{d} = X_{d}\beta + u_{d}, u_{d} ∼ N(0, \sigma^{2}_{u}),
+\end{equation}
+
+where $X_{d} = diag(x_{d1}, ..., x_{dK})_{K \times p}$ is a matrix of auxiliary variables for small area $d$, $\beta = (\beta_{1}^{T}, ... , \beta_{K}^{T})^{T}_{p \times 1}$ is a vector of fixed effect coefficients, and $u_{d}$ is a random effect capturing unexplained variability across small areas. The univariate model is extended to the multivariate model by allowing multiple characteristics $K$ per small area $d$. In a multivarite model, sampling errors $e_{d} ∼ N(0, V_{e_{d}})$ are independent across small areas with known $K \times K$ covariance matrices $V_{e_{d}}$ and the $K \times K$ covariance matrix $V_{u_{d}}$ of random effects depends on $m$ unknown parameters $\Theta = (\theta_{1}, ..., \theta_{m})$. The multi-variate Fay-Herriot model proposed by @benavent2016 is thus defined as:
+
+\begin{equation}
+y_{d} =  X_{d}\beta + u_{d} + e_{d}, \\ 
+e_{d} ∼ N(0, V_{e_{d}}), u_{d} ∼ N(0, V_{u_{d}}), d = 1,...,D. 
+\end{equation}
+
+In matrix form, the multivariate Fay-Herriot model is:
+
+\begin{equation}
+y = X\beta + Zu + e,
+\end{equation}
+
+where $y$ is a $DK \times 1$ vector of direct estimates, $X$ is a $DK \times p$ matrix of auxiliary variables, $Z$ is a $DK \times DK$ diagonal matrix, whose $d^{th}$ column is an indicator taking the value 1 if the unit belongs to area $d$ and 0 otherwise. Furthermore, $u$ denotes a $DK \times 1$ vector of random effects for area $d$ and $e$ is a $DK \times 1$ vector of sampling errors. The Multivariate Empirical Best Linear Unbiased Predictor (MEBLUP) of $Y$ by the use of Restricted Maximum Likelihood (REML) method is given by:
+
+\begin{equation}
+\hat{Y}^{MEBLUP} = X\hat{\beta} + Z\hat{u},
+\end{equation}
+
+$\hat{\beta}$ being the estimator of $\beta$, and $\hat{u}$ the estimator of $u$. MSE is estimated as a measure of uncertainty of the $\hat{Y}^{MEBLUP}$ using the method proposed by @benavent2016.
+
+In this thesis, small areas are defined as NUTS-3 regions. Although the model is specified at the NUTS-3 level, for countries where NUTS-3 regions are not available, values are taken from the highest available level (NUTS-2 or NUTS-1) and are assumed to be homogeneous across all NUTS-3 regions within that higher-level unit. <!--# This constitutes a limitation of the analysis, as variability across areas cannot be fully captured in countries where only higher-level NUTS references for the respondents’ place of residence are available. --> Small area estimates for NUTS-3 regions in these countries will rely entirely on auxiliary data.
+
+The small area model and MSE are both estimated using the R package *msae*, Version 0.1.5.
+
+<!-- ### Additional points for the methods section -->
+
+<!-- -   why area level model -->
+
+<!-- -   how the estimates are going to be validated -->
+
+<!--     -   against other sources of data if possible -->
+
+<!--     -   SAE should closely align with direct estimates of bigger areas -->
+
+<!--     -   MSE should be better than the one of the direct estimates -->
+
+<!--     -   compare values, compare precision, outliers -->
+
+<!-- -   weighting -->
+
+<!-- <!-- -->
+
+<!-- -   imputation of missing values? -->
+
+<!-- -   summarize number of observation per domain and sampling fraction -->
+
+<!-- ## Results -->
+
+<!-- ## Discussion / Conclusion -->
+
+## References
+
+<!-- ##### Secondary data -->
+
+<!-- -   Additional data to be used for validating the primary data -->
+
+<!--     -   Count of contributors in the time frame between 01.01.2022-01.01.2023 by amenity type for all amenities used, and NUTS3 -->
+
+<!--     -   Not downloaded but available: data about the editing history of the objects -->
+
+<!-- -   Download using the Ohsome API via the {ohsome} API wrapper in R --\> -->
+
+<!-- ### Preliminary descriptives OSM data -->
+
+<!-- -   Aggregating OSM objects over NUTS3 -->
+
+<!-- -   For better comparison - counts per population? -->
+
+<!--     -   Here: count per 1000 inhabitants in nuts regions (NUTS3) -->
+
+<!-- ![](images/clipboard-544290489.png) -->
+
+<!-- ![](images/clipboard-1101949910.png){width="425"} -->
+
+<!-- #### Validating: Tagging of OSM objects -->
+
+<!-- -   How complete are the attributes? Does it vary by country/regions and type of object? -->
+
+<!--     -   Problem: there is no maximum for the number of tags, because contributors can create own tags apart from the general tags proposed by OSM 'rulebook' ('any tags you like framework'); -->
+
+<!--     -   using absolute counts not a problem for comparison? -->
+
+<!-- -   It is good to look at the dsitribution bacuse we want to minimize data loss and maximize number of attributes -->
+
+<!-- -   Differences within countries (urban/rural?) -->
+
+<!-- ![](images/clipboard-3101772620.png) -->
+
+<!-- ![](images/clipboard-4045930371.png) -->
