@@ -22,7 +22,8 @@ ui <- fluidPage(
         radioButtons(
           inputId = "selected_nuts_level",
           label = "Select NUTS level:",
-          choices = c("NUTS 1", "NUTS 2", "NUTS 3")),
+          choices = c("Country", "NUTS 1")
+          ),
         # dropdown
         selectInput(
           inputId = "selected_var",
@@ -67,7 +68,8 @@ server <- function(input, output, session) {
     req(input$selected_var, input$selected_nuts_level) 
     
     filtered_datasets <- eurostat_database %>%
-      filter(title==input$selected_var)
+      filter(title==input$selected_var) %>%
+      na.omit()
 
     start_year <- unique(as.numeric(substr(filtered_datasets$data.start, 1, 4)))
     end_year   <- unique(as.numeric(substr(filtered_datasets$data.end, 1, 4)))
@@ -82,80 +84,63 @@ server <- function(input, output, session) {
     )
   })
   
+  # reactive variable for later data filter
+  selected_levl_code <- reactive({
+    req(input$selected_nuts_level)
+    
+    case_when(
+      input$selected_nuts_level == "Country" ~ 0,
+      input$selected_nuts_level == "NUTS 1" ~ 1
+    )
+    
+  })
   
-  # get a dataset via the selected dataset name
-  # we need this because we want to filter by year, but there are different
-  # years avialable for each dataset
-  # selected_dataset_id <- reactive({
-  #   req(input$selected_var)
-  # 
-  #   eurostat_database %>%
-  #     filter(title == input$selected_var) %>%
-  #     pull(code) %>%
-  #     first()
-  # })
+  # get a dataset id
+  selected_dataset_id <- reactive({
+    req(input$selected_var, input$selected_year)
 
-  # selected_levl_code <- reactive({
-  #   req(input$selected_nuts_level)
-  #   
-  #   case_when(
-  #     input$selected_nuts_level == "NUTS 1" ~ 1,
-  #     input$selected_nuts_level == "NUTS 2" ~ 2,
-  #     input$selected_nuts_level == "NUTS 3" ~ 3
-  #   )
-  # })
-  # 
-  # raw_data <- reactive({
-  #   req(selected_dataset_id())
-  #   get_eurostat(id = selected_dataset_id()) %>%
-  #     mutate(YEAR = substr(TIME_PERIOD, 1, 4))
-  # })
-  # 
-  # # update year selector from dataset
-  # observeEvent(raw_data(), {
-  # 
-  #   years <- raw_data() %>%
-  #     pull(YEAR) %>%
-  #     unique() %>%
-  #     sort()
-  # 
-  #   updateSelectInput(
-  #     session,
-  #     inputId = "selected_year",
-  #     choices = years)
-  # })
-  # 
-  # nuts_filtered <- reactive({
-  #   req(selected_levl_code())
-  #   
-  #   nuts %>% filter(LEVL_CODE == selected_levl_code())
-  # })
-  # 
-  # map_data <- reactive({
-  #   req(raw_data(), input$selected_year, selected_levl_code())
-  #   
-  #   raw_data() %>%
-  #     left_join(nuts_filtered(), by = c("geo" = "NUTS_ID")) %>%
-  #     filter(
-  #       YEAR == input$selected_year,
-  #       LEVL_CODE == selected_levl_code()
-  #     ) %>%
-  #     st_as_sf()
-  # })
-  # 
-  # output$map <- renderPlot({
-  #   req(map_data())
-  #   
-  #  plot(map_data()["values"], main="")
-  #   
-  # })
-  # 
-  # output$descriptives <- renderTable({
-  #   raw_data() %>%
-  #    # st_drop_geometry() %>%
-  #     select(values) %>%
-  #     tbl_summary()
-  # })
+    eurostat_database %>%
+      filter(title == input$selected_var) %>%
+      pull(code) %>%
+      first()
+  })
+  
+  map_data <- reactive({
+    req(selected_dataset_id(), selected_levl_code())
+    
+    filtered_nuts <- nuts %>% filter(LEVL_CODE == selected_levl_code())
+    
+    get_eurostat(id = selected_dataset_id()) %>%
+      select(c("geo", "TIME_PERIOD", "values")) %>%
+      mutate(YEAR = substr(TIME_PERIOD, 1, 4)) %>%
+      left_join(filtered_nuts, by = c("geo" = "NUTS_ID")) %>%
+      filter(
+        YEAR == input$selected_year,
+        LEVL_CODE == selected_levl_code()
+        ) %>%
+      distinct(geo, .keep_all = TRUE) %>%
+      st_as_sf()
+  })
+
+  output$map <- renderPlot({
+    req(map_data())
+    
+    plot(map_data()["values"], main="")
+
+  })
+  
+  output$descriptives <- renderTable({
+    map_data() %>%
+      st_drop_geometry() %>%
+      select(values) %>%
+      tbl_summary(
+        type = all_continuous() ~ "continuous2",
+        statistic = list(
+          all_continuous() ~ c("{mean} ({sd})", "{min} - {max}", "{median} ({p25} - {p75})"))
+      ) %>%
+      modify_header(label = "Descriptive Statistics") %>%
+      modify_table_body(~ .x[-1, ])
+  })
 }
 
 shinyApp(ui = ui, server = server)
