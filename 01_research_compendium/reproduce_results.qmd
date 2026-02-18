@@ -1,0 +1,74 @@
+---
+title: "Instructions for reproduction"
+date: today
+author: "Lidiya Mishieva"
+format:
+  html:
+    toc: true
+    toc-location: left
+    toc-expand: true
+editor: visual
+---
+
+## Introduction
+
+This file contains instructions for reproducing results presented in the document **research_report.pdf**.
+
+## Steps
+
+### 1 Process ESS data
+
+```{r}
+#| label: source-script-01
+#| results: "hide"
+#| message: false
+#| warning: false
+
+source("01_code/02_process_mplus_output.R")
+```
+
+### 2 Estimate factor model in Mplus
+
+### 3 Process Mplus output
+
+```{r}
+#| label: source-script-02
+#| results: "hide"
+#| message: false
+#| warning: false
+
+source("01_code/02_process_mplus_output.R")
+```
+
+### 4 Produce direct estimates
+
+```{r}
+#| label: source-script-03
+#| results: "hide"
+#| message: false
+#| warning: false
+
+source("01_code/03_produce_direct_estimates.R")
+```
+
+### 5 Produce graphs
+
+```{r}
+#| label: source-script-04
+#| results: "hide"
+#| message: false
+#| warning: false
+
+source("01_code/04_produce_graphs.R")
+```
+
+### 6 Render the report
+
+```{r}
+#| label: render-report
+#| results: "hide"
+#| message: false
+#| warning: false
+
+quarto::quarto_render("research_report.qmd")
+```
