@@ -62,19 +62,13 @@ The quality of local infrastructure shapes how individuals evaluate and relate t
 
 For measuring social cohesion, the operationalization is based on the latent model proposed by @bottoni2016. The model was originally validated using indicators from the European Social Survey (ESS) Round 6 (2012). The ESS is a biennial, cross-national survey based ont cross-sectional probability sampling of all persons aged 15 years and older residing in private households within each participating country. In ESS, the data is geo-referenced through Nomenclature of Territorial Units for Statistics (NUTS) regions. The available levels of aggregation of geographic location is different across European countries as illustrated in @tbl-nuts.
 
-+------------+---------------------------------------------------------------------------------------------------------------------+
-| NUTS level | ESS country                                                                                                         |
-+============+=====================================================================================================================+
-| NUTS 1     | Cyprus, Germany, Italy, Montenegro, United Kingdom                                                                  |
-+------------+---------------------------------------------------------------------------------------------------------------------+
-|            |                                                                                                                     |
-+------------+---------------------------------------------------------------------------------------------------------------------+
-| NUTS 2     | Austria, Belgium, France, Greece, Latvia, Netherlands, Norway, Poland, Portugal, Serbia, Spain, Sweden, Switzerland |
-+------------+---------------------------------------------------------------------------------------------------------------------+
-|            |                                                                                                                     |
-+------------+---------------------------------------------------------------------------------------------------------------------+
-| NUTS 3     | Bulgaria, Croatia, Finland, Hungary, Iceland, Ireland, Lithuania, Slovakia, Slovenia                                |
-+------------+---------------------------------------------------------------------------------------------------------------------+
+| NUTS level | ESS country |
+|----|----|
+| NUTS 1 | Cyprus, Germany, Italy, Montenegro, United Kingdom |
+|  |  |
+| NUTS 2 | Austria, Belgium, France, Greece, Latvia, Netherlands, Norway, Poland, Portugal, Serbia, Spain, Sweden, Switzerland |
+|  |  |
+| NUTS 3 | Bulgaria, Croatia, Finland, Hungary, Iceland, Ireland, Lithuania, Slovakia, Slovenia |
 
 : Available NUTS levels for respondents’ place of residence by country in ESS 11 {#tbl-nuts}
 
@@ -224,35 +218,21 @@ OSM data can be accessed via the read-only application programming interface Ove
 
 An OSM snapshot dated 01.01.2023 was used to match ESS11, with queries limited to the administrative boundaries of ESS11 countries that use NUTS classification for official statistics. All attributes documented for each feature were extracted. The key-value pairs used in the queries are listed in @tbl-variables-osm. The choice of the features is based on the literature review introduced in Chapter 2.
 
-+---------------------------------------------------------+------------+----------------------------------------------------------------------------------+
-| Type of infrastructure                                  | Key        | Value                                                                            |
-+=========================================================+============+==================================================================================+
-| **Buildings**                                           |            |                                                                                  |
-+---------------------------------------------------------+------------+----------------------------------------------------------------------------------+
-| Education                                               | amenity    | college, kindergarden, library, school, university                               |
-+---------------------------------------------------------+------------+----------------------------------------------------------------------------------+
-| Healthcare                                              | amenity    | clinic, doctors, hospital, nursing_home, pharmacy, social_facility               |
-+---------------------------------------------------------+------------+----------------------------------------------------------------------------------+
-| Cultural/social gathering                               | amenity    | community_centre, social_centre, nightclub                                       |
-+---------------------------------------------------------+------------+----------------------------------------------------------------------------------+
-| Facilities                                              | amenity    | give_box, shower                                                                 |
-+---------------------------------------------------------+------------+----------------------------------------------------------------------------------+
-| Other                                                   | amenity    | internet_cafe, kitchen, marketplace, place_of_worship, public_bath, refugee_site |
-+---------------------------------------------------------+------------+----------------------------------------------------------------------------------+
-|                                                         |            |                                                                                  |
-+---------------------------------------------------------+------------+----------------------------------------------------------------------------------+
-| **Natural features, land use and other infrastructure** |            |                                                                                  |
-+---------------------------------------------------------+------------+----------------------------------------------------------------------------------+
-| Open places                                             | leisure    | park, playground                                                                 |
-+---------------------------------------------------------+------------+----------------------------------------------------------------------------------+
-| Roads for motor vehicle traffic                         | highway    | motorway, trunk, primary, secondary, tertiary, residential                       |
-+---------------------------------------------------------+------------+----------------------------------------------------------------------------------+
-| Roads for primarily pedestrian traffic                  | highway    | living_street, pedestrian, footway, bridleway, steps, path, sidewalk, crossing   |
-+---------------------------------------------------------+------------+----------------------------------------------------------------------------------+
-| Natural barriers                                        | waterway   | river                                                                            |
-+---------------------------------------------------------+------------+----------------------------------------------------------------------------------+
-| Land use                                                | landuse    | industrial, residential, retail, military, landfill                              |
-+---------------------------------------------------------+------------+----------------------------------------------------------------------------------+
+| Type of infrastructure | Key | Value |
+|----|----|----|
+| **Buildings** |  |  |
+| Education | amenity | college, kindergarden, library, school, university |
+| Healthcare | amenity | clinic, doctors, hospital, nursing_home, pharmacy, social_facility |
+| Cultural/social gathering | amenity | community_centre, social_centre, nightclub |
+| Facilities | amenity | give_box, shower |
+| Other | amenity | internet_cafe, kitchen, marketplace, place_of_worship, public_bath, refugee_site |
+|  |  |  |
+| **Natural features, land use and other infrastructure** |  |  |
+| Open places | leisure | park, playground |
+| Roads for motor vehicle traffic | highway | motorway, trunk, primary, secondary, tertiary, residential |
+| Roads for primarily pedestrian traffic | highway | living_street, pedestrian, footway, bridleway, steps, path, sidewalk, crossing |
+| Natural barriers | waterway | river |
+| Land use | landuse | industrial, residential, retail, military, landfill |
 
 : Key-value pairs of OpenStreetMap features used for Overpass API queries {#tbl-variables-osm}
 
