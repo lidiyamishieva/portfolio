@@ -80,6 +80,9 @@ plot_quantile_map <- function(
     border = NA,
     main = main,
     sub = sub,
+    cex.main = 0.7,
+    xaxs = "i",
+    yaxs = "i"
   )
   
   # legend labels
@@ -89,62 +92,49 @@ plot_quantile_map <- function(
     format(round(brks$brks[-1], 3), big.mark = ",")
   )
   
-  legend
-  legend(
-    "bottomleft",
-    legend = legend_labels,
-    fill = pal,
-    title = "Quantiles", #legend_title,
-    border = "white",
-    cex = 0.6,
-    bty = "n"
-  )
+  # legend(
+  #   "bottomleft",
+  #   legend = legend_labels,
+  #   fill = pal,
+  #   title = "Quantiles", #legend_title,
+  #   border = "white",
+  #   cex = 0.6,
+  #   bty = "n"
+  # )
 }
 
 # 04 export graphs -----
 
-par(mfrow=c(1,1))
-
-png("03_output/i_graphs/plot_f1_est.png", width = 700, height = 700, units = "px", pointsize = 5, res=300)
+png("03_output/i_graphs/plot_f1.png", width = 1400, height = 800, units = "px", pointsize = 5, res=500)
+par(mfrow = c(1,2), mar = c(1,1,4,1))
 plot_quantile_map(all_direct_estimates, var = "F1_wgt_F1_wgt_Direct", palette = "Reds",  main = "F1: Interpersonal trust\n(direct estimate, mean)", n=10)
-dev.off()
-
-png("03_output/i_graphs/plot_f1_cv.png", width = 700, height = 700, units = "px", pointsize = 5, res=300)
 plot_quantile_map(all_direct_estimates, var = "F1_wgt_F1_wgt_CV", palette = "Reds",  main = "F1: Interpersonal trust\n(direct estimate, cv)", n=10)
 dev.off()
 
-png("03_output/i_graphs/plot_f2_est.png", width = 700, height = 700, units = "px", pointsize = 5, res=300)
+png("03_output/i_graphs/plot_f2.png", width = 1400, height = 800, units = "px", pointsize = 5, res=500)
+par(mfrow = c(1,2), mar = c(1,1,4,1))
 plot_quantile_map(all_direct_estimates, var = "F2_wgt_Direct", palette = "Reds",  main = "F2: Social relations\n(direct estimate, mean)", n=10)
-dev.off()
-
-png("03_output/i_graphs/plot_f2_cv.png", width = 700, height = 700, units = "px", pointsize = 5, res=300)
 plot_quantile_map(all_direct_estimates, var = "F2_wgt_CV", palette = "Reds",  main = "F2: Social relations\n(direct estimate, cv)", n=10)
 dev.off()
 
-png("03_output/i_graphs/plot_f3_est.png", width = 700, height = 700, units = "px", pointsize = 5, res=300)
+png("03_output/i_graphs/plot_f3.png", width = 1400, height = 800, units = "px", pointsize = 5, res=500)
+par(mfrow = c(1,2), mar = c(1,1,4,1))
 plot_quantile_map(all_direct_estimates, var = "F3_wgt_Direct", palette = "Reds",  main = "F3: Openness\n(direct estimate, mean)", n=10)
-dev.off()
-
-png("03_output/i_graphs/plot_f3_cv.png", width = 700, height = 700, units = "px", pointsize = 5, res=300)
 plot_quantile_map(all_direct_estimates, var = "F3_wgt_CV", palette = "Reds",  main = "F3: Openness\n(direct estimate, cv)", n=10)
 dev.off()
 
-png("03_output/i_graphs/plot_f4_est.png", width = 700, height = 700, units = "px", pointsize = 5, res=300)
+png("03_output/i_graphs/plot_f4.png", width = 1400, height = 800, units = "px", pointsize = 5, res=500)
+par(mfrow = c(1,2), mar = c(1,1,4,1))
 plot_quantile_map(all_direct_estimates, var = "F4_wgt_Direct", palette = "Reds",  main = "F4: Trust in institutions\n(direct estimate, mean)", n=10)
-dev.off()
-
-png("03_output/i_graphs/plot_f4_cv.png", width = 700, height = 700, units = "px", pointsize = 5, res=300)
 plot_quantile_map(all_direct_estimates, var = "F4_wgt_CV", palette = "Reds",  main = "F4: Trust in institutions\n(direct estimate, cv)", n=10)
 dev.off()
 
-png("03_output/i_graphs/plot_f5_est.png", width = 700, height = 700, units = "px", pointsize = 5, res=300)
+png("03_output/i_graphs/plot_f5.png", width = 1400, height = 800, units = "px", pointsize = 5, res=500)
+par(mfrow = c(1,2), mar = c(1,1,4,1))
 plot_quantile_map(all_direct_estimates, var = "F5_wgt_Direct", palette = "Reds",  main = "F5: Legitimacy of institutions\n(direct estimate, mean)", n=10)
-dev.off()
-
-png("03_output/i_graphs/plot_f5_cv.png", width = 700, height = 700, units = "px", pointsize = 5, res=300)
 plot_quantile_map(all_direct_estimates, var = "F5_wgt_CV", palette = "Reds",  main = "F5: Legitimacy of institutions\n(direct estimate, cv)", n=10)
 dev.off()
 
 # 05 export data -----
 
-st_write(all_direct_estimates, "00_data/ii_processed/all_direct_estimates.geojson", append = FALSE, delete_dsn = TRUE)
+st_write(all_direct_estimates, "00_data/ii_processed/all_direct_estimates.geojson", append = FALSE, delete_dsn = TRUE, quiet = TRUE)
