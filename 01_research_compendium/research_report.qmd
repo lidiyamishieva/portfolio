@@ -10,8 +10,6 @@ format: pdf
 include-in-header:
   - text: |
       \pagenumbering{gobble}
- # toc: true
- # lot: true
 editor: visual
 bibliography: references.bib
 ---
@@ -23,6 +21,8 @@ bibliography: references.bib
 \tableofcontents
 
 \listoftables
+
+\listoffigures
 
 \newpage
 
@@ -349,11 +349,11 @@ The small area model and MSE are both estimated using the R package *msae*, Vers
 
 ![Direct estimates of factor 2 (social relations)](03_output/i_graphs/plot_f2.png){width="90%"}
 
-![Direct estimates of factor 3 (Openness)](03_output/i_graphs/plot_f3.png){width="90%"}
+![Direct estimates of factor 3 (openness)](03_output/i_graphs/plot_f3.png){width="90%"}
 
-![Direct estimates of factor 4 (Trust in institutions)](03_output/i_graphs/plot_f4.png){width="90%"}
+![Direct estimates of factor 4 (trust in institutions)](03_output/i_graphs/plot_f4.png){width="90%"}
 
-![Direct estimates of factor 5 (Legitimacy of institutions)](03_output/i_graphs/plot_f5.png){width="90%"}
+![Direct estimates of factor 5 (legitimacy of institutions)](03_output/i_graphs/plot_f5.png){width="90%"}
 
 ```{r}
 #| label: summary-direct-estimates
