@@ -1,3 +1,13 @@
+############## BEGIN HEADER ############## 
+##
+## script name: 03_produce_direct_estimates.R
+## input: ess11_analysis_dataset.csv
+## output: pop_sizes_eu_2023.csv, all_direct_estimates.csv
+## author: Lidiya Mishieva
+## date: 19 February 2026
+##
+############### END HEADER ###############
+
 # 00 setup -----
 
 # clean up workspace

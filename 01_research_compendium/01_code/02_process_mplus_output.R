@@ -1,3 +1,13 @@
+############## BEGIN HEADER ############## 
+##
+## script name: 02_process_mplus_output.R
+## input: ess11_dataset.csv, ess11_analysis_dataset_mplus_nocolnames_fscores_nuts1.csv
+## output: ess11_analysis_dataset.csv
+## author: Lidiya Mishieva
+## date: 19 February 2026
+##
+############### END HEADER ###############
+
 # 00 setup -----
 
 # clean up workspace

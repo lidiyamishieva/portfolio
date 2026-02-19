@@ -1,3 +1,13 @@
+############## BEGIN HEADER ############## 
+##
+## script name: 01_process_ess_data.R
+## input: ESS11.csv
+## output: ess11_dataset.csv, ess11_analysis_dataset_mplus_nocolnames.csv
+## author: Lidiya Mishieva
+## date: 19 February 2026
+##
+############### END HEADER ###############
+
 # 00 setup -----
 
 # clean up workspace

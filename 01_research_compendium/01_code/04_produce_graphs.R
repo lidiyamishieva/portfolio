@@ -1,3 +1,13 @@
+############## BEGIN HEADER ############## 
+##
+## script name: 04_produce_graphs.R
+## input: all_direct_estimates.csv
+## output: all_direct_estimates.geojson, multiple graphs
+## author: Lidiya Mishieva
+## date: 19 February 2026
+##
+############### END HEADER ###############
+
 # 00 setup -----
 
 # clean up workspace
