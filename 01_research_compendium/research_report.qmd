@@ -62,13 +62,19 @@ The quality of local infrastructure shapes how individuals evaluate and relate t
 
 For measuring social cohesion, the operationalization is based on the latent model proposed by @bottoni2016. The model was originally validated using indicators from the European Social Survey (ESS) Round 6 (2012). The ESS is a biennial, cross-national survey based ont cross-sectional probability sampling of all persons aged 15 years and older residing in private households within each participating country. In ESS, the data is geo-referenced through Nomenclature of Territorial Units for Statistics (NUTS) regions. The available levels of aggregation of geographic location is different across European countries as illustrated in @tbl-nuts.
 
-| NUTS level | ESS country |
-|----|----|
-| NUTS 1 | Cyprus, Germany, Italy, Montenegro, United Kingdom |
-|  |  |
-| NUTS 2 | Austria, Belgium, France, Greece, Latvia, Netherlands, Norway, Poland, Portugal, Serbia, Spain, Sweden, Switzerland |
-|  |  |
-| NUTS 3 | Bulgaria, Croatia, Finland, Hungary, Iceland, Ireland, Lithuania, Slovakia, Slovenia |
++------------+---------------------------------------------------------------------------------------------------------------------+
+| NUTS level | ESS country                                                                                                         |
++============+=====================================================================================================================+
+| NUTS 1     | Cyprus, Germany, Italy, Montenegro, United Kingdom                                                                  |
++------------+---------------------------------------------------------------------------------------------------------------------+
+|            |                                                                                                                     |
++------------+---------------------------------------------------------------------------------------------------------------------+
+| NUTS 2     | Austria, Belgium, France, Greece, Latvia, Netherlands, Norway, Poland, Portugal, Serbia, Spain, Sweden, Switzerland |
++------------+---------------------------------------------------------------------------------------------------------------------+
+|            |                                                                                                                     |
++------------+---------------------------------------------------------------------------------------------------------------------+
+| NUTS 3     | Bulgaria, Croatia, Finland, Hungary, Iceland, Ireland, Lithuania, Slovakia, Slovenia                                |
++------------+---------------------------------------------------------------------------------------------------------------------+
 
 : Available NUTS levels for respondents’ place of residence by country in ESS 11 {#tbl-nuts}
 
@@ -218,21 +224,35 @@ OSM data can be accessed via the read-only application programming interface Ove
 
 An OSM snapshot dated 01.01.2023 was used to match ESS11, with queries limited to the administrative boundaries of ESS11 countries that use NUTS classification for official statistics. All attributes documented for each feature were extracted. The key-value pairs used in the queries are listed in @tbl-variables-osm. The choice of the features is based on the literature review introduced in Chapter 2.
 
-| Type of infrastructure | Key | Value |
-|----|----|----|
-| **Buildings** |  |  |
-| Education | amenity | college, kindergarden, library, school, university |
-| Healthcare | amenity | clinic, doctors, hospital, nursing_home, pharmacy, social_facility |
-| Cultural/social gathering | amenity | community_centre, social_centre, nightclub |
-| Facilities | amenity | give_box, shower |
-| Other | amenity | internet_cafe, kitchen, marketplace, place_of_worship, public_bath, refugee_site |
-|  |  |  |
-| **Natural features, land use and other infrastructure** |  |  |
-| Open places | leisure | park, playground |
-| Roads for motor vehicle traffic | highway | motorway, trunk, primary, secondary, tertiary, residential |
-| Roads for primarily pedestrian traffic | highway | living_street, pedestrian, footway, bridleway, steps, path, sidewalk, crossing |
-| Natural barriers | waterway | river |
-| Land use | landuse | industrial, residential, retail, military, landfill |
++---------------------------------------------------------+-------------+----------------------------------------------------------------------------------+
+| Type of infrastructure                                  | Key         | Value                                                                            |
++=========================================================+=============+==================================================================================+
+| **Buildings**                                           |             |                                                                                  |
++---------------------------------------------------------+-------------+----------------------------------------------------------------------------------+
+| Education                                               | amenity     | college, kindergarden, library, school, university                               |
++---------------------------------------------------------+-------------+----------------------------------------------------------------------------------+
+| Healthcare                                              | amenity     | clinic, doctors, hospital, nursing_home, pharmacy, social_facility               |
++---------------------------------------------------------+-------------+----------------------------------------------------------------------------------+
+| Cultural/social gathering                               | amenity     | community_centre, social_centre, nightclub                                       |
++---------------------------------------------------------+-------------+----------------------------------------------------------------------------------+
+| Facilities                                              | amenity     | give_box, shower                                                                 |
++---------------------------------------------------------+-------------+----------------------------------------------------------------------------------+
+| Other                                                   | amenity     | internet_cafe, kitchen, marketplace, place_of_worship, public_bath, refugee_site |
++---------------------------------------------------------+-------------+----------------------------------------------------------------------------------+
+|                                                         |             |                                                                                  |
++---------------------------------------------------------+-------------+----------------------------------------------------------------------------------+
+| **Natural features, land use and other infrastructure** |             |                                                                                  |
++---------------------------------------------------------+-------------+----------------------------------------------------------------------------------+
+| Open places                                             | leisure     | park, playground                                                                 |
++---------------------------------------------------------+-------------+----------------------------------------------------------------------------------+
+| Roads for motor vehicle traffic                         | highway     | motorway, trunk, primary, secondary, tertiary, residential                       |
++---------------------------------------------------------+-------------+----------------------------------------------------------------------------------+
+| Roads for primarily pedestrian traffic                  | highway     | living_street, pedestrian, footway, bridleway, steps, path, sidewalk, crossing   |
++---------------------------------------------------------+-------------+----------------------------------------------------------------------------------+
+| Natural barriers                                        | waterway    | river                                                                            |
++---------------------------------------------------------+-------------+----------------------------------------------------------------------------------+
+| Land use                                                | landuse     | industrial, residential, retail, military, landfill                              |
++---------------------------------------------------------+-------------+----------------------------------------------------------------------------------+
 
 : Key-value pairs of OpenStreetMap features used for Overpass API queries {#tbl-variables-osm}
 
@@ -322,5 +342,56 @@ $\hat{\beta}$ being the estimator of $\beta$, and $\hat{u}$ the estimator of $u$
 In this thesis, small areas are defined as NUTS-3 regions. Although the model is specified at the NUTS-3 level, for countries where NUTS-3 regions are not available, values are taken from the highest available level (NUTS-2 or NUTS-1) and are assumed to be homogeneous across all NUTS-3 regions within that higher-level unit. Small area estimates for NUTS-3 regions in these countries will rely entirely on auxiliary data.
 
 The small area model and MSE are both estimated using the R package *msae*, Version 0.1.5.
+
+## 5 Preliminary results
+
+![Direct estimates of factor 1 (interpersonal trust)](03_output/i_graphs/plot_f1.png){width="90%"}
+
+![Direct estimates of factor 2 (social relations)](03_output/i_graphs/plot_f2.png){width="90%"}
+
+![Direct estimates of factor 3 (Openness)](03_output/i_graphs/plot_f3.png){width="90%"}
+
+![Direct estimates of factor 4 (Trust in institutions)](03_output/i_graphs/plot_f4.png){width="90%"}
+
+![Direct estimates of factor 5 (Legitimacy of institutions)](03_output/i_graphs/plot_f5.png){width="90%"}
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| tbl-cap: Summary of direct estimates
+
+source("01_code/04_produce_graphs.R")
+
+library(gtsummary)
+library(kableExtra)
+
+all_direct_estimates %>%
+  as.data.frame() %>%
+  select(contains("Direct")) %>%
+  tbl_summary(
+    label = list(
+      F1_wgt_F1_wgt_Direct ~ "F1: Interpersonal trust",
+      F2_wgt_Direct ~ "F2: Social relations",
+      F3_wgt_Direct ~ "F3: Openness",
+      F4_wgt_Direct ~ "F4: Trust in institutions",
+      F5_wgt_Direct ~ "F5: Legitimacy of institutions"
+    ),
+    type = all_continuous() ~ "continuous2",
+    statistic = all_continuous() ~ c(
+      "{min}, {p25}, {median}, {p75}, {max}", 
+      "{mean} ({sd})"
+    )
+  ) %>%
+  bold_labels() %>%
+  as_kable_extra(    
+    booktabs = TRUE,
+    longtable = TRUE,
+    linesep = "\n") %>% 
+  kable_styling(font_size = 10)
+
+```
+
+\newpage
 
 ## References
