@@ -83,11 +83,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
-  <ul class="collapse">
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
   <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
   <li><a href="#software" id="toc-software" class="nav-link" data-scroll-target="#software">Software</a></li>
-  </ul></li>
   <li><a href="#steps" id="toc-steps" class="nav-link" data-scroll-target="#steps">Steps</a>
   <ul class="collapse">
   <li><a href="#process-ess-data" id="toc-process-ess-data" class="nav-link" data-scroll-target="#process-ess-data">1 Process ESS data</a></li>
@@ -138,50 +136,57 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <p>This file contains instructions for reproducing results presented in the document <strong>research_report.pdf</strong>.</p>
-<section id="data" class="level3">
-<h3 class="anchored" data-anchor-id="data">Data</h3>
+</section>
+<section id="data" class="level2">
+<h2 class="anchored" data-anchor-id="data">Data</h2>
 <p>The project uses different source data.</p>
-<p>First, survey data from the 11th round of the European Social Survey (Edition 4.0, 21 November 2025) is used, which can be accessed via this <a href="https://ess.sikt.no/en/study/412db4fe-c77a-4e98-8ea4-6c19007f551b">link</a>. As the ESS data is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>, it is free to share and redistribut. The source file used for this project is provided with this repository under <strong>00_data/i_raw/ESS11.csv</strong>. Note, that all output of this project builds on this data and is therefore licensed under the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a> as well. No changes were done on the source data file itself.</p>
-<p>Second, population estimates provided by <a href="https://ec.europa.eu/eurostat">Eurostat</a> are used. These are retrieved from the Eurostat database using the R package <a href="https://cran.r-project.org/web/packages/eurostat/index.html"><code>eurostat</code></a> (Version 4.0.0).</p>
-<p>Third, geographic information about statistical regions (NUTS, Nomenclature of Territorial Units for Statistics) is retrieved from the GISCO (Geographic Information System of the Commission) <a href="https://ec.europa.eu/eurostat">Eurostat</a> database using the R package <a href="https://cloud.r-project.org/web/packages/giscoR/index.html"><code>giscoR</code></a> (Version 1.0.1)</p>
+<p>First, survey data from the 11th round of the European Social Survey (Edition 4.0, 21 November 2025) is used, which can be accessed via this <a href="https://ess.sikt.no/en/study/412db4fe-c77a-4e98-8ea4-6c19007f551b">link</a>. As the ESS data is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>, it is free to share and redistribute. The source file used for this project is provided with this repository under <em>00_data/i_raw/ESS11.csv.</em> Note, that all output of this project builds on this data and is therefore licensed under the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a> as well. No changes were done on the source data file itself.</p>
+<p>Second, population estimates provided by <a href="https://ec.europa.eu/eurostat">Eurostat</a> are used. These are retrieved from the Eurostat database using the R package <a href="https://cran.r-project.org/web/packages/eurostat/index.html"><code>eurostat</code></a> version 4.0.0.</p>
+<p>Third, geographic information about statistical regions (NUTS, Nomenclature of Territorial Units for Statistics) is retrieved from the GISCO (Geographic Information System of the Commission) <a href="https://ec.europa.eu/eurostat">Eurostat</a> database using the R package <a href="https://cloud.r-project.org/web/packages/giscoR/index.html"><code>giscoR</code></a> version 1.0.1.</p>
 <p>No data needs to be accessed first in order to reproduce the results of this project, as the source files are either stored in the repository or are accessed using the aforementioned packages at the corresponding places within the code.</p>
 </section>
-<section id="software" class="level3">
-<h3 class="anchored" data-anchor-id="software">Software</h3>
-<p>The project uses R (R version 4.5.2 (2025-10-31)) and Mplus (Version 8.11).</p>
-</section>
+<section id="software" class="level2">
+<h2 class="anchored" data-anchor-id="software">Software</h2>
+<p>The project uses R version 4.5.2 (2025-10-31) and Mplus version 8.11. The following section describes when which software is used.</p>
 </section>
 <section id="steps" class="level2">
 <h2 class="anchored" data-anchor-id="steps">Steps</h2>
+<p>In general, you should be able to re-run the analyses by rendering this quarto-document, as all scripts are re-executed and the research report is re-rendered by doing so. However, as there is different software involved in the process, you will need to run the Mplus code manually (see instructions below). The research report can still be produced by this document, as all intermediate results are stored in this repository, the exact locations are described below under step 2.</p>
 <section id="process-ess-data" class="level3">
 <h3 class="anchored" data-anchor-id="process-ess-data">1 Process ESS data</h3>
+<p>In this step the ESS source data is filtered and transformed for the purpose of using it in Mplus. This code produces output, that is imported in Mplus as a source file in the next step.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"01_code/02_process_mplus_output.R"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="estimate-factor-model-in-mplus" class="level3">
 <h3 class="anchored" data-anchor-id="estimate-factor-model-in-mplus">2 Estimate factor model in Mplus</h3>
+<p>In this step a factor model and factor scores are estimated according to the script provided under <em>02_mplus/01_nuts1_ml_all_cont.inp</em>. It is not necessary to have access to Mplus in order to run the rest of the code, as intermediate results are stored in this repository. The output from Mplus is stored under (1) <em>02_mplus/01_nuts1_ml_all_cont.out</em> and(2) <em>02_mplus/ess11_analysis_dataset_mplus_nocolnames_fscores_nuts1.csv</em> and contains (1) model output and (2) factor scores estimated based on the estimated factor model. Factor scores are used in the next step.</p>
 </section>
 <section id="process-mplus-output" class="level3">
 <h3 class="anchored" data-anchor-id="process-mplus-output">3 Process Mplus output</h3>
+<p>In this step some data transformation steps are performed on the factor scores.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"01_code/02_process_mplus_output.R"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="produce-direct-estimates" class="level3">
 <h3 class="anchored" data-anchor-id="produce-direct-estimates">4 Produce direct estimates</h3>
+<p>In this step Horvitz-Thompson estimator is used in order to produce design-unbiased (direct) estimates of factor scores in NUTS regions.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"01_code/03_produce_direct_estimates.R"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="produce-graphs" class="level3">
 <h3 class="anchored" data-anchor-id="produce-graphs">5 Produce graphs</h3>
+<p>In this step the estimates produced in the previous step are visualized. The graphs are used in the research report.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"01_code/04_produce_graphs.R"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="render-the-report" class="level3">
 <h3 class="anchored" data-anchor-id="render-the-report">6 Render the report</h3>
+<p>In this step the research report manuscript is rendered to pdf.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>quarto<span class="sc">::</span><span class="fu">quarto_render</span>(<span class="st">"research_report.qmd"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>

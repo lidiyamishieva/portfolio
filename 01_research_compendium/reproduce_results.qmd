@@ -32,6 +32,8 @@ The project uses `r version$version.string` and Mplus version 8.11. The followin
 
 ## Steps
 
+In general, you should be able to re-run the analyses by rendering this quarto-document, as all scripts are re-executed and the research report is re-rendered by doing so. However, as there is different software involved in the process, you will need to run the Mplus code manually (see instructions below). The research report can still be produced by this document, as all intermediate results are stored in this repository, the exact locations are described below under step 2.
+
 ### 1 Process ESS data
 
 In this step the ESS source data is filtered and transformed for the purpose of using it in Mplus. This code produces output, that is imported in Mplus as a source file in the next step.
