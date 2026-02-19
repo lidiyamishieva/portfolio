@@ -356,6 +356,7 @@ The small area model and MSE are both estimated using the R package *msae*, Vers
 ![Direct estimates of factor 5 (Legitimacy of institutions)](03_output/i_graphs/plot_f5.png){width="90%"}
 
 ```{r}
+#| label: summary-direct-estimates
 #| echo: false
 #| message: false
 #| warning: false
