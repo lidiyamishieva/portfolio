@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Lidiya Mishieva">
-<meta name="dcterms.date" content="2026-02-18">
+<meta name="dcterms.date" content="2026-02-19">
 
 <title>Instructions for reproduction</title>
 <style>
@@ -83,7 +83,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
+  <ul class="collapse">
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  <li><a href="#software" id="toc-software" class="nav-link" data-scroll-target="#software">Software</a></li>
+  </ul></li>
   <li><a href="#steps" id="toc-steps" class="nav-link" data-scroll-target="#steps">Steps</a>
   <ul class="collapse">
   <li><a href="#process-ess-data" id="toc-process-ess-data" class="nav-link" data-scroll-target="#process-ess-data">1 Process ESS data</a></li>
@@ -119,7 +123,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">February 18, 2026</p>
+      <p class="date">February 19, 2026</p>
     </div>
   </div>
   
@@ -133,6 +137,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>This file contains instructions for reproducing results presented in the document <strong>research_report.pdf</strong>.</p>
+<section id="data" class="level3">
+<h3 class="anchored" data-anchor-id="data">Data</h3>
+<p>The project uses different source data.</p>
+<p>First, survey data from the 11th round of the European Social Survey (Edition 4.0, 21 November 2025) is used, which can be accessed via this <a href="https://ess.sikt.no/en/study/412db4fe-c77a-4e98-8ea4-6c19007f551b">link</a>. As the ESS data is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>, it is free to share and redistribut. The source file used for this project is provided with this repository under <strong>00_data/i_raw/ESS11.csv</strong>. Note, that all output of this project builds on this data and is therefore licensed under the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a> as well. No changes were done on the source data file itself.</p>
+<p>Second, population estimates provided by <a href="https://ec.europa.eu/eurostat">Eurostat</a> are used. These are retrieved from the Eurostat database using the R package <a href="https://cran.r-project.org/web/packages/eurostat/index.html"><code>eurostat</code></a> (Version 4.0.0).</p>
+<p>Third, geographic information about statistical regions (NUTS, Nomenclature of Territorial Units for Statistics) is retrieved from the GISCO (Geographic Information System of the Commission) <a href="https://ec.europa.eu/eurostat">Eurostat</a> database using the R package <a href="https://cloud.r-project.org/web/packages/giscoR/index.html"><code>giscoR</code></a> (Version 1.0.1)</p>
+<p>No data needs to be accessed first in order to reproduce the results of this project, as the source files are either stored in the repository or are accessed using the aforementioned packages at the corresponding places within the code.</p>
+</section>
+<section id="software" class="level3">
+<h3 class="anchored" data-anchor-id="software">Software</h3>
+<p>The project uses R (R version 4.5.2 (2025-10-31)) and Mplus (Version 8.11).</p>
+</section>
 </section>
 <section id="steps" class="level2">
 <h2 class="anchored" data-anchor-id="steps">Steps</h2>

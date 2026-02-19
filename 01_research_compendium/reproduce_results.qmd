@@ -14,9 +14,27 @@ editor: visual
 
 This file contains instructions for reproducing results presented in the document **research_report.pdf**.
 
+## Data
+
+The project uses different source data.
+
+First, survey data from the 11th round of the European Social Survey (Edition 4.0, 21 November 2025) is used, which can be accessed via this [link](https://ess.sikt.no/en/study/412db4fe-c77a-4e98-8ea4-6c19007f551b). As the ESS data is licensed under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0), it is free to share and redistribute. The source file used for this project is provided with this repository under *00_data/i_raw/ESS11.csv.* Note, that all output of this project builds on this data and is therefore licensed under the [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0) as well. No changes were done on the source data file itself.
+
+Second, population estimates provided by [Eurostat](https://ec.europa.eu/eurostat) are used. These are retrieved from the Eurostat database using the R package [`eurostat`](https://cran.r-project.org/web/packages/eurostat/index.html) version 4.0.0.
+
+Third, geographic information about statistical regions (NUTS, Nomenclature of Territorial Units for Statistics) is retrieved from the GISCO (Geographic Information System of the Commission) [Eurostat](https://ec.europa.eu/eurostat) database using the R package [`giscoR`](https://cloud.r-project.org/web/packages/giscoR/index.html) version 1.0.1.
+
+No data needs to be accessed first in order to reproduce the results of this project, as the source files are either stored in the repository or are accessed using the aforementioned packages at the corresponding places within the code.
+
+## Software
+
+The project uses `r version$version.string` and Mplus version 8.11. The following section describes when which software is used.
+
 ## Steps
 
 ### 1 Process ESS data
+
+In this step the ESS source data is filtered and transformed for the purpose of using it in Mplus. This code produces output, that is imported in Mplus as a source file in the next step.
 
 ```{r}
 #| label: source-script-01
@@ -29,7 +47,11 @@ source("01_code/02_process_mplus_output.R")
 
 ### 2 Estimate factor model in Mplus
 
+In this step a factor model and factor scores are estimated according to the script provided under *02_mplus/01_nuts1_ml_all_cont.inp*. It is not necessary to have access to Mplus in order to run the rest of the code, as intermediate results are stored in this repository. The output from Mplus is stored under (1) *02_mplus/01_nuts1_ml_all_cont.out* and(2) *02_mplus/ess11_analysis_dataset_mplus_nocolnames_fscores_nuts1.csv* and contains (1) model output and (2) factor scores estimated based on the estimated factor model. Factor scores are used in the next step.
+
 ### 3 Process Mplus output
+
+In this step some data transformation steps are performed on the factor scores.
 
 ```{r}
 #| label: source-script-02
@@ -42,6 +64,8 @@ source("01_code/02_process_mplus_output.R")
 
 ### 4 Produce direct estimates
 
+In this step Horvitz-Thompson estimator is used in order to produce design-unbiased (direct) estimates of factor scores in NUTS regions.
+
 ```{r}
 #| label: source-script-03
 #| results: "hide"
@@ -53,6 +77,8 @@ source("01_code/03_produce_direct_estimates.R")
 
 ### 5 Produce graphs
 
+In this step the estimates produced in the previous step are visualized. The graphs are used in the research report.
+
 ```{r}
 #| label: source-script-04
 #| results: "hide"
@@ -63,6 +89,8 @@ source("01_code/04_produce_graphs.R")
 ```
 
 ### 6 Render the report
+
+In this step the research report manuscript is rendered to pdf.
 
 ```{r}
 #| label: render-report
