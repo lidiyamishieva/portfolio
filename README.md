@@ -1,8 +1,3 @@
-# Research compendium
+# Portfolio
 
-This repository contains the complete research compendium. 
-
-The research compendium contains all files needed to reproduce the results presented in the research report.
-
-For detailed instructions, please check reproduce_results.qmd and reproduce_results.html.
-
+Lidiya's deliverables for Markup languages and reproducible programming in statistics (202000010) for 2024-2026 cohort of MSBBSS.
