@@ -1,7 +1,8 @@
-# Markup languages and reproducible programming in statistics
+# Research compendium
 
-Deliverables for Markup languages and reproducible programming in statistics (202000010).
+This repository contains the complete research compendium. 
 
-Use this template to create your own repository, fill the contents of the repo with exercises and deliverables, then download the zip archive to hand in.
+The research compendium contains all files needed to reproduce the results presented in the research report.
 
+For detailed instructions, please check reproduce_results.qmd and reproduce_results.html.
 
